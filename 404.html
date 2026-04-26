@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found | Sanicar Tech</title>
+    <meta name="description" content="The page you're looking for doesn't exist. Head back to the Sanicar Tech home or browse our auto electrical services.">
+    <meta name="robots" content="noindex, follow">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        :root {
+            --font-display: 'Bricolage Grotesque', sans-serif;
+            --navy: #1a1a2e;
+            --cream: #f5f0ea;
+            --accent: #1e3a8a;
+            --accent-light: #1e3a8a;
+            --accent-bg: #1e3a8a;
+            --white: #ffffff;
+            --gray: #6b6b7b;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        body {
+            font-family: var(--font-display);
+            background: var(--cream);
+            color: var(--navy);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        a { text-decoration: none; color: inherit; }
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 32px; width: 100%; }
+
+        /* Navbar (matches site) */
+        .navbar {
+            padding: 8px 32px;
+        }
+        .navbar-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+            background: var(--white);
+            border-radius: 100px;
+            padding: 6px 10px 6px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.04);
+        }
+        .nav-logo {
+            display: flex; align-items: center;
+            margin: -60px 0;
+        }
+        .nav-logo .logo-img { height: 200px; width: auto; display: block; object-fit: contain; }
+        .nav-cta {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: var(--accent-bg);
+            color: var(--white);
+            padding: 14px 28px;
+            border-radius: 100px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        .nav-cta:hover { background: #3b5bdb; transform: translateY(-1px); }
+
+        /* 404 Hero */
+        .nf-wrap {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 80px 0 100px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .nf-wrap::before {
+            content: '';
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 700px; height: 700px;
+            border: 1px dashed rgba(0,0,0,0.08);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        .nf-wrap::after {
+            content: '';
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 1100px; height: 1100px;
+            border: 1px dashed rgba(0,0,0,0.05);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        .nf-inner {
+            position: relative;
+            z-index: 1;
+            max-width: 720px;
+        }
+        .nf-code {
+            display: inline-block;
+            font-weight: 900;
+            font-size: clamp(7rem, 16vw, 12rem);
+            line-height: 0.9;
+            letter-spacing: -6px;
+            background: linear-gradient(135deg, var(--navy) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 12px;
+        }
+        .nf-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--gray);
+            background: var(--white);
+            border: 1px solid rgba(0,0,0,0.06);
+            padding: 8px 16px;
+            border-radius: 100px;
+            margin-bottom: 24px;
+        }
+        .nf-eyebrow i { width: 14px; height: 14px; color: var(--accent); }
+        .nf-wrap h1 {
+            font-weight: 800;
+            font-size: clamp(2rem, 4.5vw, 3rem);
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+        }
+        .nf-wrap p {
+            font-size: 1.05rem;
+            color: var(--gray);
+            margin-bottom: 36px;
+            max-width: 520px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .nf-buttons {
+            display: flex;
+            gap: 14px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .nf-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 16px 30px;
+            border-radius: 100px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: var(--transition);
+            border: 1.5px solid transparent;
+        }
+        .nf-btn i { width: 16px; height: 16px; }
+        .nf-btn-primary {
+            background: var(--navy);
+            color: var(--white);
+        }
+        .nf-btn-primary:hover { background: #0e0e1c; transform: translateY(-2px); box-shadow: 0 12px 28px rgba(26,26,46,0.2); }
+        .nf-btn-secondary {
+            background: var(--white);
+            color: var(--white);
+            border-color: rgba(0,0,0,0.08);
+        }
+        .nf-btn-secondary:hover { border-color: var(--navy); transform: translateY(-2px); }
+
+        /* Suggested links */
+        .nf-suggest {
+            margin-top: 56px;
+            padding-top: 32px;
+            border-top: 1px solid rgba(0,0,0,0.08);
+        }
+        .nf-suggest-label {
+            font-size: 0.78rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--gray);
+            margin-bottom: 16px;
+        }
+        .nf-suggest-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 14px;
+            justify-content: center;
+        }
+        .nf-suggest-links a {
+            font-size: 0.9rem;
+            color: var(--navy);
+            padding: 6px 4px;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s;
+        }
+        .nf-suggest-links a:hover { border-bottom-color: var(--navy); }
+
+        /* Footer (mini) */
+        .nf-footer {
+            text-align: center;
+            padding: 24px 32px;
+            color: var(--gray);
+            font-size: 0.85rem;
+            border-top: 1px solid rgba(0,0,0,0.06);
+        }
+
+        @media (max-width: 600px) {
+            .nf-wrap { padding: 40px 0 60px; }
+            .nf-buttons { flex-direction: column; align-items: stretch; }
+            .nf-btn { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="navbar-inner">
+            <a href="index.html" class="nav-logo">
+                <img src="assests/Sanicar-logo.png" alt="Sanicar Tech" class="logo-img">
+            </a>
+            <a href="tel:+61352000000" class="nav-cta">
+                Get a Free Quote
+            </a>
+        </div>
+    </nav>
+
+    <div class="nf-wrap">
+        <div class="container">
+            <div class="nf-inner">
+                <span class="nf-eyebrow">
+                    <i data-lucide="alert-circle"></i>
+                    Page not found
+                </span>
+                <div class="nf-code">404</div>
+                <h1>This page doesn't seem to exist.</h1>
+                <p>The link you followed may be broken, or the page may have been moved. Let's get you back on track.</p>
+                <div class="nf-buttons">
+                    <a href="index.html" class="nf-btn nf-btn-primary">
+                        <i data-lucide="home"></i> Go to Home
+                    </a>
+                    <a href="services.html" class="nf-btn nf-btn-secondary">
+                        <i data-lucide="wrench"></i> Browse Services
+                    </a>
+                </div>
+                <div class="nf-suggest">
+                    <div class="nf-suggest-label">Or jump to</div>
+                    <div class="nf-suggest-links">
+                        <a href="service-mobile-auto-electrician.html">Mobile Auto Electrician</a>
+                        <a href="service-car-electrical-diagnostics.html">Diagnostics</a>
+                        <a href="service-battery-charging-systems.html">Battery &amp; Charging</a>
+                        <a href="mbcod.html">MBCOD &mdash; European</a>
+                        <a href="index.html#contact">Contact</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="nf-footer">
+        &copy; 2026 Sanicar Tech &mdash; Mobile Auto Electrician, Geelong &amp; surrounds.
+    </footer>
+
+    <script>lucide.createIcons();</script>
+</body>
+</html>

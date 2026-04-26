@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mobile Auto Electrician Geelong | On-Site Car Electrical Repairs</title>
-    <meta name="description" content="Mobile auto electrician in Geelong. On-site diagnostics, breakdown repairs, no-start fault diagnosis. We come to your home, office or roadside across Geelong, Ocean Grove, Torquay & Armstrong Creek.">
+    <title>Mobile Auto Electrician Geelong | Professional On-Site Service</title>
+    <meta name="description" content="Professional mobile auto electrician in Geelong. Fault diagnosis, starting and charging systems, lighting, safety systems, engine electronics and sensors — across passenger vehicles, European cars, 4x4s and commercial vehicles.">
     <meta name="robots" content="index, follow">
-    <meta property="og:title" content="Mobile Auto Electrician Geelong | Geelong Auto Electrician">
+    <meta property="og:title" content="Mobile Auto Electrician Geelong | Sanicar Tech">
     <meta property="og:description" content="On-site car electrical diagnostics and repairs across Geelong & surrounds. We come to you.">
     <meta property="og:type" content="website">
     <link rel="canonical" href="https://geelongautoelectrician.com.au/services/mobile-auto-electrician">
@@ -37,9 +37,9 @@
             --navy-light: #2d2d44;
             --cream: #f5f0ea;
             --cream-dark: #ebe5dd;
-            --accent: #8b9cf7;
-            --accent-light: #c5cdf9;
-            --accent-bg: #bfc8f8;
+            --accent: #1e3a8a;
+            --accent-light: #1e3a8a;
+            --accent-bg: #1e3a8a;
             --green: #4ade80;
             --green-bg: #ecfdf5;
             --white: #ffffff;
@@ -64,22 +64,21 @@
         /* ===== NAVBAR ===== */
         .navbar {
             position: sticky; top: 0; z-index: 1000;
-            padding: 16px 32px; background: transparent;
+            padding: 8px 32px; background: transparent;
         }
         .navbar-inner {
             max-width: 1280px; margin: 0 auto;
             background: var(--white); border-radius: 100px;
-            padding: 12px 12px 12px 28px;
+            padding: 6px 10px 6px 24px;
             display: flex; align-items: center; justify-content: space-between;
             box-shadow: 0 2px 16px rgba(0,0,0,0.04);
             position: relative; z-index: 1001;
         }
         .nav-logo {
-            font-family: var(--font-display); font-weight: 900;
-            font-size: 1.3rem; color: var(--navy);
-            display: flex; align-items: center; gap: 8px; white-space: nowrap;
+            display: flex; align-items: center; white-space: nowrap;
+            margin: -60px 0;
         }
-        .nav-logo .logo-bolt { display: flex; align-items: center; color: var(--accent); }
+        .nav-logo .logo-img { height: 200px; width: auto; display: block; object-fit: contain; }
         .nav-links { display: flex; gap: 32px; align-items: center; }
         .nav-links a {
             font-size: 0.92rem; font-weight: 500; color: var(--navy);
@@ -93,12 +92,44 @@
         }
         .nav-cta {
             display: inline-flex; align-items: center; gap: 8px;
-            background: var(--accent-bg); color: var(--navy);
+            background: var(--accent-bg); color: var(--white);
             padding: 14px 28px; border-radius: 100px;
             font-size: 0.9rem; font-weight: 600;
             transition: var(--transition); border: none;
         }
-        .nav-cta:hover { background: var(--accent); transform: translateY(-1px); }
+        .nav-cta:hover { background: #3b5bdb; transform: translateY(-1px); }
+
+        /* MBCOD nav highlight */
+        .nav-mbcod-link {
+            display: inline-flex; align-items: center; gap: 6px;
+            font-size: 0.92rem; font-weight: 600; color: var(--navy);
+            position: relative; transition: var(--transition);
+        }
+        .nav-mbcod-link:hover { opacity: 0.7; }
+        .nav-mbcod-tag {
+            position: relative; overflow: hidden; isolation: isolate;
+            font-size: 0.65rem; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 0.8px;
+            color: var(--white);
+            background: linear-gradient(135deg, #1e3a8a 0%, #1e2a5a 35%, #0a0a14 100%);
+            padding: 4px 10px; border-radius: 100px;
+            box-shadow: 0 2px 8px rgba(30,58,138,0.3), inset 0 1px 0 rgba(255,255,255,0.15);
+        }
+        .nav-mbcod-tag::before {
+            content: '';
+            position: absolute; top: 0; left: -120%;
+            width: 60%; height: 100%;
+            background: linear-gradient(100deg, transparent 0%, rgba(255,255,255,0) 30%, rgba(180,200,255,0.7) 50%, rgba(255,255,255,0) 70%, transparent 100%);
+            transform: skewX(-20deg);
+            animation: navTagShine 3.2s ease-in-out infinite;
+            pointer-events: none; z-index: 1;
+        }
+        @keyframes navTagShine {
+            0%   { left: -120%; }
+            55%  { left: 130%; }
+            100% { left: 130%; }
+        }
+        @media (prefers-reduced-motion: reduce) { .nav-mbcod-tag::before { animation: none; } }
         .mobile-toggle { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
         .mobile-toggle i { width: 28px; height: 28px; color: var(--navy); }
 
@@ -123,7 +154,7 @@
             padding: 18px; border-radius: 100px; font-weight: 700; font-size: 1rem;
         }
         .mob-btn-primary { background: var(--navy); color: var(--white); }
-        .mob-btn-secondary { background: var(--accent-bg); color: var(--navy); }
+        .mob-btn-secondary { background: var(--accent-bg); color: var(--white); }
 
         /* ===== BACK LINK ===== */
         .back-link {
@@ -196,10 +227,12 @@
         }
         .offer-check {
             width: 28px; height: 28px; flex-shrink: 0;
-            border: 2px solid var(--navy); border-radius: 50%;
+            border: 2px solid var(--green, #4ade80); border-radius: 50%;
+            background: var(--green-bg, #ecfdf5);
             display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 0 0 4px rgba(74, 222, 128, 0.08);
         }
-        .offer-check i { width: 14px; height: 14px; color: var(--navy); }
+        .offer-check i { width: 14px; height: 14px; color: var(--green, #4ade80); stroke-width: 3.5; }
         .offer-item span {
             font-size: 0.95rem; font-weight: 600; color: var(--navy);
         }
@@ -415,7 +448,7 @@
             display: flex; align-items: center; justify-content: center; flex-shrink: 0;
             transition: var(--transition);
         }
-        .faq-plus i { width: 16px; height: 16px; color: var(--navy); transition: transform 0.3s ease; }
+        .faq-plus i { width: 16px; height: 16px; color: var(--white); transition: transform 0.3s ease; }
         .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
         .faq-answer-inner {
             padding: 0 24px 20px; font-size: 0.9rem;
@@ -453,7 +486,7 @@
             font-weight: 700; font-size: 0.9rem;
             transition: var(--transition); border: none; cursor: pointer;
         }
-        .svc-cta-btn:hover { background: var(--accent-bg); transform: translateY(-2px); }
+        .svc-cta-btn:hover { background: var(--accent-bg); color: var(--white); transform: translateY(-2px); }
         .svc-cta-btn i { width: 18px; height: 18px; }
         .svc-cta-checks { margin-top: 24px; }
         .svc-cta-checks .check-item {
@@ -524,7 +557,8 @@
             .mobile-toggle { display: block; }
             .navbar { padding: 12px 16px; }
             .navbar-inner { padding: 10px 10px 10px 20px; }
-            .nav-logo { font-size: 1.1rem; }
+            .nav-logo { margin: -32px 0; }
+            .nav-logo .logo-img { height: 132px; }
             .svc-hero-img img { height: 300px; }
             .svc-overview-img img { height: 300px; }
             .svc-offers-img img { height: 300px; }
@@ -556,15 +590,16 @@
     <nav class="navbar">
         <div class="navbar-inner">
             <a href="/" class="nav-logo">
-                <span class="logo-bolt"><i data-lucide="zap" style="width:22px;height:22px;"></i></span>
-                Geelong Auto Electrician
+                <img src="assests/Sanicar-logo.png" alt="Sanicar Tech" class="logo-img">
             </a>
-            <div class="nav-links">
-                <a href="/">Home</a>
-                <a href="/#why-us">About</a>
-                <a href="/services.html" class="active">Services</a>
-                <a href="/#testimonials">Reviews</a>
-                <a href="/#contact">Contact</a>
+                        <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="services.html" class="active">Services</a>
+                <a href="mbcod.html" class="nav-mbcod-link">MBCOD <span class="nav-mbcod-tag">Premium</span></a>
+                <a href="areas.html">Areas</a>
+                <a href="blog.html">Blog</a>
+                <a href="index.html#why-us">About</a>
+                <a href="index.html#contact">Contact</a>
             </div>
             <a href="tel:+61352000000" class="nav-cta">Get a Free Quote</a>
             <button class="mobile-toggle" onclick="toggleMobileMenu()" aria-label="Open menu">
@@ -577,19 +612,20 @@
     <div class="mobile-menu" id="mobileMenu">
         <div class="mobile-menu-header">
             <a href="/" class="nav-logo">
-                <span class="logo-bolt"><i data-lucide="zap" style="width:24px;height:24px;"></i></span>
-                Geelong Auto Electrician
+                <img src="assests/Sanicar-logo.png" alt="Sanicar Tech" class="logo-img">
             </a>
             <button class="mobile-menu-close" onclick="toggleMobileMenu()" aria-label="Close menu">
                 <i data-lucide="x"></i>
             </button>
         </div>
-        <div class="mobile-menu-links">
-            <a href="/">Home</a>
-            <a href="/#why-us">About</a>
-            <a href="/services.html">Services</a>
-            <a href="/#testimonials">Reviews</a>
-            <a href="/#contact">Contact</a>
+                <div class="mobile-menu-links">
+            <a href="index.html" onclick="toggleMobileMenu()">Home</a>
+            <a href="services.html" class="active" onclick="toggleMobileMenu()">Services</a>
+            <a href="mbcod.html" onclick="toggleMobileMenu()">MBCOD</a>
+            <a href="areas.html" onclick="toggleMobileMenu()">Areas</a>
+            <a href="blog.html" onclick="toggleMobileMenu()">Blog</a>
+            <a href="index.html#why-us" onclick="toggleMobileMenu()">About</a>
+            <a href="index.html#contact" onclick="toggleMobileMenu()">Contact</a>
         </div>
         <div class="mobile-menu-cta">
             <a href="tel:+61352000000" class="mob-btn-primary"><i data-lucide="phone" style="width:18px;height:18px;"></i> Call (03) 5200 0000</a>
@@ -604,9 +640,9 @@
                 <i data-lucide="chevron-left"></i> Back to Services
             </a>
             <h1>Mobile Auto Electrician in Geelong</h1>
-            <p class="svc-hero-desc">From no-start breakdowns to complex wiring faults — we bring the workshop to your door. On-site diagnostics and repairs across Geelong, Ocean Grove, Torquay, Armstrong Creek and surrounding suburbs.</p>
+            <p class="svc-hero-desc">Auto electrical systems control everything from starting and charging to safety systems, comfort features and vehicle communication networks. We bring the workshop to you — across Geelong, Ocean Grove, Torquay, Armstrong Creek and surrounds.</p>
             <div class="svc-hero-img fade-up">
-                <img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=1200&q=80" alt="Mobile auto electrician servicing vehicle on-site in Geelong driveway" loading="eager">
+                <img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=1200&q=80" alt="Mobile auto electrician servicing vehicle on-site in Geelong" loading="eager">
             </div>
         </div>
     </section>
@@ -615,9 +651,9 @@
     <section class="svc-overview">
         <div class="container">
             <h2 class="fade-up">Service overview</h2>
-            <p class="svc-overview-text fade-up">Your vehicle's electrical system is the backbone of everything — from starting the engine to powering your lights, windows and safety systems. When something goes wrong, you need an auto electrician who can come to you, diagnose the issue fast, and get it fixed right. Our fully equipped mobile workshop carries dealer-level scan tools, parts and wiring supplies so most jobs are completed in a single visit — no towing, no workshop drop-offs, no waiting around.</p>
+            <p class="svc-overview-text fade-up">Modern vehicles depend on tightly integrated electrical systems — start/charge circuits, lighting, ABS and SRS safety modules, engine electronics, body control units and an ever-growing list of sensors. When any of these go wrong, generic shops often default to "replace and hope." We don't. As a fully equipped mobile auto electrician, we come to your home, office or roadside with dealer-level scan tools, oscilloscopes, wiring supplies and quality parts. We diagnose the actual fault, explain the cost up front, and finish most jobs in a single visit.</p>
             <div class="svc-overview-img fade-up">
-                <img src="https://images.unsplash.com/photo-1625047509248-ec889cbff17f?w=1200&q=80" alt="Auto electrician diagnosing vehicle electrical system with scan tool" loading="lazy">
+                <img src="https://images.unsplash.com/photo-1625047509248-ec889cbff17f?w=1200&q=80" alt="Auto electrician diagnosing vehicle electrical system on-site" loading="lazy">
             </div>
         </div>
     </section>
@@ -629,31 +665,31 @@
             <div class="offers-grid fade-up">
                 <div class="offer-item">
                     <div class="offer-check"><i data-lucide="check"></i></div>
-                    <span>On-site diagnostics &amp; fault finding</span>
+                    <span>Auto electrical fault diagnosis</span>
                 </div>
                 <div class="offer-item">
                     <div class="offer-check"><i data-lucide="check"></i></div>
-                    <span>No-start &amp; breakdown repairs</span>
+                    <span>Starting &amp; charging systems</span>
                 </div>
                 <div class="offer-item">
                     <div class="offer-check"><i data-lucide="check"></i></div>
-                    <span>Electrical fault tracing &amp; wiring repairs</span>
+                    <span>Lighting &amp; signal repairs</span>
                 </div>
                 <div class="offer-item">
                     <div class="offer-check"><i data-lucide="check"></i></div>
-                    <span>Battery testing &amp; replacement</span>
+                    <span>Safety system electrical faults</span>
                 </div>
                 <div class="offer-item">
                     <div class="offer-check"><i data-lucide="check"></i></div>
-                    <span>Alternator &amp; starter motor diagnostics</span>
+                    <span>Engine electronics &amp; sensors</span>
                 </div>
                 <div class="offer-item">
                     <div class="offer-check"><i data-lucide="check"></i></div>
-                    <span>Same-day emergency callouts</span>
+                    <span>Passenger, European, 4x4 &amp; commercial</span>
                 </div>
             </div>
             <div class="svc-offers-img fade-up">
-                <img src="https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=1200&q=80" alt="Mobile auto electrician working under the hood of vehicle" loading="lazy">
+                <img src="https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=1200&q=80" alt="Mobile auto electrician working under the hood" loading="lazy">
             </div>
         </div>
     </section>
@@ -809,7 +845,7 @@
     <div class="svc-cta">
         <div class="svc-cta-text">
             <h2>Don't Let Electrical Problems Disrupt Your Day</h2>
-            <p>Whether it's a no-start, a wiring fault or a warning light — our expert mobile auto electricians are just one call away. Reliable and affordable service, at your door.</p>
+            <p>Whether it's a no-start, a wiring fault or a warning light — an experienced mobile auto electrician is just one call away. Honest quotes, fast response, work guaranteed.</p>
             <a href="tel:+61352000000" class="svc-cta-btn">
                 Book a Free Call <i data-lucide="arrow-right"></i>
             </a>
@@ -831,7 +867,7 @@
                 <div>
                     <div class="footer-label">Address</div>
                     <div class="footer-address">
-                        <h3>Geelong Auto Electrician</h3>
+                        <h3>Sanicar Tech</h3>
                         <p>Mobile Service<br>Geelong, VIC 3220</p>
                     </div>
                     <div class="footer-contact-block">
@@ -846,29 +882,32 @@
                 <div>
                     <div class="footer-label">Pages</div>
                     <ul>
-                        <li><a href="/">Home</a></li>
-                        <li><a href="/#why-us">About</a></li>
-                        <li><a href="/services.html">Services</a></li>
-                        <li><a href="/#testimonials">Reviews</a></li>
-                        <li><a href="/#contact">Contact</a></li>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#why-us">About</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="index.html#areas">Service Areas</a></li>
+                        <li><a href="index.html#testimonials">Reviews</a></li>
+                        <li><a href="index.html#faq">FAQ</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
                     </ul>
                 </div>
                 <div>
                     <div class="footer-label">Services</div>
                     <ul>
-                        <li><a href="/service-mobile-auto-electrician.html">Mobile Auto Electrician</a></li>
-                        <li><a href="/services.html">Car Electrical Diagnostics</a></li>
-                        <li><a href="/services.html">European Vehicles</a></li>
-                        <li><a href="/services.html">Battery &amp; Charging</a></li>
-                        <li><a href="/services.html">Trailer Wiring</a></li>
-                        <li><a href="/services.html">Dash Cam Installation</a></li>
-                        <li><a href="/services.html">Car Air Conditioning</a></li>
-                        <li><a href="/services.html">ECU Coding</a></li>
+                        <li><a href="service-mobile-auto-electrician.html">Mobile Auto Electrician</a></li>
+                        <li><a href="service-car-electrical-diagnostics.html">Car Electrical Diagnostics</a></li>
+                        <li><a href="service-battery-charging-systems.html">Battery &amp; Charging</a></li>
+                        <li><a href="service-trailer-wiring.html">Trailer Wiring</a></li>
+                        <li><a href="service-dash-cam-accessories.html">Dash Cam Installation</a></li>
+                        <li><a href="service-car-air-conditioning.html">Car Air Conditioning</a></li>
+                        <li><a href="service-ecu-coding-programming.html">ECU Coding</a></li>
+                        <li><a href="service-general-electrical-repairs.html">General Electrical Repairs</a></li>
+                        <li><a href="mbcod.html"><strong>MBCOD &mdash; European</strong></a></li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <span>&copy; 2026 Geelong Auto Electrician. All rights reserved.</span>
+                <span>&copy; 2026 Sanicar Tech. All rights reserved.</span>
                 <span>ABN: XX XXX XXX XXX &nbsp;|&nbsp; Licensed Auto Electrician</span>
             </div>
         </div>

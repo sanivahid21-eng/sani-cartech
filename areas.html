@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Areas of Service | Sanicar Tech — Mobile Auto Electrician Geelong</title>
+    <meta name="description" content="Sanicar Tech mobile auto electrician services across Geelong, Ocean Grove, Torquay, Armstrong Creek, Belmont, Newtown, Highton, Waurn Ponds and more.">
+    <meta name="robots" content="index, follow">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        :root {
+            --font-display: 'Bricolage Grotesque', sans-serif;
+            --navy: #1a1a2e; --cream: #f5f0ea; --cream-dark: #ebe5dd;
+            --accent: #1e3a8a; --accent-light: #1e3a8a; --accent-bg: #1e3a8a;
+            --white: #ffffff; --gray: #6b6b7b; --gray-light: #9b9bab;
+            --radius: 16px; --radius-lg: 24px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        body {
+            font-family: var(--font-display);
+            background: var(--cream); color: var(--navy);
+            line-height: 1.6; overflow-x: hidden;
+        }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        img { max-width: 100%; display: block; }
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 32px; }
+
+        /* Navbar */
+        .top-banner {
+            background: var(--navy); color: var(--white);
+            text-align: center; padding: 12px 24px;
+            font-size: 0.88rem; font-weight: 500;
+        }
+        .top-banner a { font-weight: 700; text-decoration: underline; margin-left: 8px; }
+        .navbar { position: sticky; top: 0; z-index: 1000; padding: 8px 32px; background: transparent; }
+        .navbar-inner {
+            max-width: 1280px; margin: 0 auto; background: var(--white);
+            border-radius: 100px; padding: 6px 10px 6px 24px;
+            display: flex; align-items: center; justify-content: space-between;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.04);
+        }
+        .nav-logo { display: flex; align-items: center; margin: -60px 0; }
+        .nav-logo .logo-img { height: 200px; width: auto; display: block; object-fit: contain; }
+        .nav-links { display: flex; gap: 32px; align-items: center; }
+        .nav-links a { font-size: 0.92rem; font-weight: 500; color: var(--navy); transition: var(--transition); position: relative; }
+        .nav-links a:hover { opacity: 0.6; }
+        .nav-links a.active { font-weight: 600; }
+        .nav-links a.active::after {
+            content: ''; position: absolute; bottom: -4px; left: 0; right: 0;
+            height: 2px; background: var(--navy); border-radius: 2px;
+        }
+        .nav-cta {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: var(--accent-bg); color: var(--white);
+            padding: 14px 28px; border-radius: 100px;
+            font-size: 0.9rem; font-weight: 600;
+            transition: var(--transition);
+        }
+        .nav-cta:hover { background: #3b5bdb; transform: translateY(-1px); }
+
+        /* MBCOD nav highlight */
+        .nav-mbcod-link {
+            display: inline-flex; align-items: center; gap: 6px;
+            font-size: 0.92rem; font-weight: 600; color: var(--navy);
+            position: relative; transition: var(--transition);
+        }
+        .nav-mbcod-link:hover { opacity: 0.7; }
+        .nav-mbcod-tag {
+            position: relative; overflow: hidden; isolation: isolate;
+            font-size: 0.65rem; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 0.8px;
+            color: var(--white);
+            background: linear-gradient(135deg, #1e3a8a 0%, #1e2a5a 35%, #0a0a14 100%);
+            padding: 4px 10px; border-radius: 100px;
+            box-shadow: 0 2px 8px rgba(30,58,138,0.3), inset 0 1px 0 rgba(255,255,255,0.15);
+        }
+        .nav-mbcod-tag::before {
+            content: '';
+            position: absolute; top: 0; left: -120%;
+            width: 60%; height: 100%;
+            background: linear-gradient(100deg, transparent 0%, rgba(255,255,255,0) 30%, rgba(180,200,255,0.7) 50%, rgba(255,255,255,0) 70%, transparent 100%);
+            transform: skewX(-20deg);
+            animation: navTagShine 3.2s ease-in-out infinite;
+            pointer-events: none; z-index: 1;
+        }
+        @keyframes navTagShine {
+            0%   { left: -120%; }
+            55%  { left: 130%; }
+            100% { left: 130%; }
+        }
+        @media (prefers-reduced-motion: reduce) { .nav-mbcod-tag::before { animation: none; } }
+
+        /* Hero */
+        .areas-hero {
+            padding: 80px 0 64px;
+            text-align: center;
+        }
+        .areas-eyebrow {
+            display: inline-flex; align-items: center; gap: 8px;
+            font-size: 0.78rem; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 0.18em;
+            color: var(--accent);
+            margin-bottom: 22px;
+        }
+        .areas-eyebrow i { width: 16px; height: 16px; }
+        .areas-hero h1 {
+            font-weight: 800;
+            font-size: clamp(2.5rem, 5.5vw, 4.2rem);
+            color: var(--navy);
+            margin-bottom: 22px;
+            line-height: 1.05;
+            letter-spacing: -0.02em;
+        }
+        .areas-hero p {
+            color: var(--gray);
+            font-size: 1.05rem;
+            max-width: 620px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* Grid */
+        .areas-section { padding: 0 0 80px; }
+        .areas-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+        .area-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            transition: var(--transition);
+            display: flex; flex-direction: column;
+        }
+        .area-card:hover { transform: translateY(-4px); box-shadow: 0 16px 32px rgba(0,0,0,0.06); }
+        .area-card-img {
+            position: relative;
+            aspect-ratio: 4/3;
+            overflow: hidden;
+        }
+        .area-card-img img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        .area-card:hover .area-card-img img { transform: scale(1.05); }
+        .area-card-img::after {
+            content: '';
+            position: absolute; inset: 0;
+            background: linear-gradient(180deg, transparent 50%, rgba(0,0,0,0.7) 100%);
+        }
+        .area-card-name {
+            position: absolute;
+            left: 24px; bottom: 20px;
+            color: var(--white);
+            font-weight: 800;
+            font-size: 1.7rem;
+            letter-spacing: -0.01em;
+            z-index: 1;
+        }
+        .area-card-body {
+            padding: 22px 24px 26px;
+            color: var(--gray);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            flex-grow: 1;
+        }
+
+        /* CTA */
+        .areas-cta-wrap { padding: 0 0 80px; }
+        .areas-cta {
+            background: var(--navy);
+            border-radius: var(--radius-lg);
+            padding: 64px 32px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .areas-cta::before {
+            content: '';
+            position: absolute;
+            inset: -20%;
+            background:
+                radial-gradient(circle at 12% 50%, rgba(139,156,247,0.16) 0, transparent 30%),
+                radial-gradient(circle at 88% 50%, rgba(139,156,247,0.12) 0, transparent 30%);
+            pointer-events: none;
+        }
+        .areas-cta > * { position: relative; z-index: 1; }
+        .areas-cta-eyebrow {
+            display: inline-flex; align-items: center; gap: 8px;
+            color: var(--accent);
+            font-size: 0.78rem; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 0.18em;
+            margin-bottom: 18px;
+        }
+        .areas-cta-eyebrow i { width: 14px; height: 14px; }
+        .areas-cta h2 {
+            font-weight: 800;
+            font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+            color: var(--white);
+            margin-bottom: 28px;
+        }
+        .areas-cta-buttons { display: inline-flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
+        .cta-btn-light {
+            background: var(--white); color: var(--navy);
+            padding: 14px 30px; border-radius: 100px;
+            font-weight: 700; font-size: 0.92rem;
+            transition: var(--transition);
+        }
+        .cta-btn-light:hover { transform: translateY(-2px); }
+        .cta-btn-ghost {
+            background: transparent; color: var(--white);
+            border: 1.5px solid rgba(255,255,255,0.4);
+            padding: 14px 30px; border-radius: 100px;
+            font-weight: 700; font-size: 0.92rem;
+            transition: var(--transition);
+        }
+        .cta-btn-ghost:hover { background: rgba(255,255,255,0.1); border-color: var(--white); }
+
+        /* Footer */
+        .footer { background: var(--cream-dark); border-radius: var(--radius-lg) var(--radius-lg) 0 0; padding: 64px 0 32px; }
+        .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 60px; margin-bottom: 48px; }
+        .footer-label { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--gray-light); margin-bottom: 16px; }
+        .footer-address h3 { font-weight: 800; font-size: 1.15rem; color: var(--navy); margin-bottom: 4px; }
+        .footer-address p { color: var(--navy); font-size: 0.95rem; line-height: 1.7; }
+        .footer ul li { margin-bottom: 8px; }
+        .footer ul li a { font-size: 0.92rem; color: var(--navy); }
+        .footer ul li a:hover { color: var(--accent); }
+        .footer-bottom { border-top: 1px solid rgba(0,0,0,0.08); padding-top: 24px; display: flex; justify-content: space-between; font-size: 0.82rem; color: var(--gray); flex-wrap: wrap; gap: 12px; }
+
+        @media (max-width: 1024px) {
+            .areas-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 768px) {
+            .nav-links, .nav-cta { display: none; }
+            .navbar { padding: 12px 16px; }
+            .navbar-inner { padding: 10px 10px 10px 20px; }
+            .nav-logo { margin: -32px 0; }
+            .nav-logo .logo-img { height: 132px; }
+            .areas-hero { padding: 56px 0 40px; }
+            .areas-grid { grid-template-columns: 1fr; }
+            .areas-cta { padding: 48px 24px; }
+            .footer-grid { grid-template-columns: 1fr; gap: 40px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-banner">
+        Mobile auto electrician — we come to you across Geelong &amp; surrounds.
+        <a href="tel:+61352000000">Call now</a>
+    </div>
+
+    <nav class="navbar">
+        <div class="navbar-inner">
+            <a href="index.html" class="nav-logo">
+                <img src="assests/Sanicar-logo.png" alt="Sanicar Tech" class="logo-img">
+            </a>
+                        <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="services.html">Services</a>
+                <a href="mbcod.html" class="nav-mbcod-link">MBCOD <span class="nav-mbcod-tag">Premium</span></a>
+                <a href="areas.html" class="active">Areas</a>
+                <a href="blog.html">Blog</a>
+                <a href="index.html#why-us">About</a>
+                <a href="index.html#contact">Contact</a>
+            </div>
+            <a href="tel:+61352000000" class="nav-cta">Get a Free Quote</a>
+        </div>
+    </nav>
+
+    <section class="areas-hero">
+        <div class="container">
+            <span class="areas-eyebrow"><i data-lucide="star"></i> Service Areas</span>
+            <h1>Areas We Service<br>Across Geelong</h1>
+            <p>From the heart of Geelong to the Bellarine and Surf Coast, our mobile auto electricians come to you. Wherever you are, we've got you covered.</p>
+        </div>
+    </section>
+
+    <section class="areas-section">
+        <div class="container">
+            <div class="areas-grid">
+                <div class="area-card">
+                    <div class="area-card-img">
+                        <img src="https://images.unsplash.com/photo-1564457699259-ad1937e89d05?w=900&q=80" alt="Geelong waterfront with marina and city skyline">
+                        <span class="area-card-name">Geelong</span>
+                    </div>
+                    <div class="area-card-body">
+                        Our home base. Mobile auto electrical, diagnostics, ECU coding and battery service throughout Geelong CBD and the inner suburbs — same-day where we can.
+                    </div>
+                </div>
+                <div class="area-card">
+                    <div class="area-card-img">
+                        <img src="https://images.unsplash.com/photo-1571055107559-3e67626fa8be?w=900&q=80" alt="Ocean Grove beach Bellarine Peninsula">
+                        <span class="area-card-name">Ocean Grove</span>
+                    </div>
+                    <div class="area-card-body">
+                        Servicing Ocean Grove and the Bellarine — breakdowns, no-start diagnosis and dealer-level coding for European cars without the trip into town.
+                    </div>
+                </div>
+                <div class="area-card">
+                    <div class="area-card-img">
+                        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=900&q=80" alt="Torquay Surf Coast Australia">
+                        <span class="area-card-name">Torquay</span>
+                    </div>
+                    <div class="area-card-body">
+                        Trailer wiring, dash cams and full auto electrical for Torquay, Jan Juc and the Surf Coast. We come to your driveway with everything we need on board.
+                    </div>
+                </div>
+                <div class="area-card">
+                    <div class="area-card-img">
+                        <img src="https://images.unsplash.com/photo-1449157291145-7efd050a4d0e?w=900&q=80" alt="Armstrong Creek new estate streetscape">
+                        <span class="area-card-name">Armstrong Creek</span>
+                    </div>
+                    <div class="area-card-body">
+                        New-estate Armstrong Creek owners — battery, alternator and accessory wiring on-site. We work around school runs and tradie hours.
+                    </div>
+                </div>
+                <div class="area-card">
+                    <div class="area-card-img">
+                        <img src="https://images.unsplash.com/photo-1570168007204-dfb528c6958f?w=900&q=80" alt="Belmont Geelong residential street">
+                        <span class="area-card-name">Belmont</span>
+                    </div>
+                    <div class="area-card-body">
+                        Auto electrical for Belmont residents and businesses — from a quick fuse fix to complete towbar wiring jobs and ECU programming.
+                    </div>
+                </div>
+                <div class="area-card">
+                    <div class="area-card-img">
+                        <img src="https://images.unsplash.com/photo-1511497584788-876760111969?w=900&q=80" alt="Highton Geelong leafy street">
+                        <span class="area-card-name">Highton</span>
+                    </div>
+                    <div class="area-card-body">
+                        Highton homeowners get the same dealer-level diagnostics and coding capability — without the dealership trip or premium.
+                    </div>
+                </div>
+                <div class="area-card">
+                    <div class="area-card-img">
+                        <img src="https://images.unsplash.com/photo-1510797215324-95aa89f43c33?w=900&q=80" alt="Newtown Geelong heritage architecture">
+                        <span class="area-card-name">Newtown</span>
+                    </div>
+                    <div class="area-card-body">
+                        Heritage homes and modern garages alike — Newtown gets full auto electrical service at the kerb. Tidy work, factory-grade finish.
+                    </div>
+                </div>
+                <div class="area-card">
+                    <div class="area-card-img">
+                        <img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=900&q=80" alt="Waurn Ponds suburb Geelong">
+                        <span class="area-card-name">Waurn Ponds</span>
+                    </div>
+                    <div class="area-card-body">
+                        Servicing Waurn Ponds, Grovedale and Wandana Heights. Diagnostics, batteries and accessory installs — booked online, on time.
+                    </div>
+                </div>
+                <div class="area-card">
+                    <div class="area-card-img">
+                        <img src="https://images.unsplash.com/photo-1444723121867-7a241cacace9?w=900&q=80" alt="Charlemont and surrounds">
+                        <span class="area-card-name">Charlemont</span>
+                    </div>
+                    <div class="area-card-body">
+                        Charlemont and surrounds — we cover the new estates and the rural pockets between Geelong and the Bellarine.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="areas-cta-wrap">
+        <div class="container">
+            <div class="areas-cta">
+                <span class="areas-cta-eyebrow"><i data-lucide="star"></i> Serving All of Geelong</span>
+                <h2>Don't see your area? Get in touch.</h2>
+                <div class="areas-cta-buttons">
+                    <a href="tel:+61352000000" class="cta-btn-light">Get a free quote</a>
+                    <a href="index.html#contact" class="cta-btn-ghost">Book now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-label">Address</div>
+                    <div class="footer-address">
+                        <h3>Sanicar Tech</h3>
+                        <p>Mobile Service<br>Geelong, VIC 3220</p>
+                    </div>
+                </div>
+                <div>
+                    <div class="footer-label">Pages</div>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="mbcod.html">MBCOD</a></li>
+                        <li><a href="areas.html">Service Areas</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="footer-label">Contact</div>
+                    <ul>
+                        <li><a href="tel:+61352000000">(03) 5200 0000</a></li>
+                        <li><a href="mailto:info@geelongautoelectrician.com.au">info@geelongautoelectrician.com.au</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>&copy; 2026 Sanicar Tech. All rights reserved.</span>
+                <span>Licensed Auto Electrician</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>lucide.createIcons();</script>
+</body>
+</html>

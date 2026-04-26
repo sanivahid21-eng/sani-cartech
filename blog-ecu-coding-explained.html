@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ECU coding explained: when do you actually need it? | Sanicar Tech Blog</title>
+    <meta name="description" content="A plain-English guide to ECU coding and module programming — when it's required, when it isn't, and how Sanicar Tech handles it in Geelong.">
+    <meta name="robots" content="index, follow">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        :root {
+            --font-display: 'Bricolage Grotesque', sans-serif;
+            --navy: #1a1a2e; --cream: #f5f0ea; --cream-dark: #ebe5dd;
+            --accent: #1e3a8a; --accent-light: #1e3a8a; --accent-bg: #1e3a8a;
+            --white: #ffffff; --gray: #6b6b7b; --gray-light: #9b9bab;
+            --radius: 16px; --radius-lg: 24px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        body {
+            font-family: var(--font-display);
+            background: var(--cream); color: var(--navy);
+            line-height: 1.7; overflow-x: hidden;
+        }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        img { max-width: 100%; display: block; }
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 32px; }
+
+        /* Navbar */
+        .top-banner {
+            background: var(--navy); color: var(--white);
+            text-align: center; padding: 12px 24px;
+            font-size: 0.88rem; font-weight: 500;
+        }
+        .top-banner a { font-weight: 700; text-decoration: underline; margin-left: 8px; }
+        .navbar { position: sticky; top: 0; z-index: 1000; padding: 8px 32px; background: transparent; }
+        .navbar-inner {
+            max-width: 1280px; margin: 0 auto; background: var(--white);
+            border-radius: 100px; padding: 6px 10px 6px 24px;
+            display: flex; align-items: center; justify-content: space-between;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.04);
+        }
+        .nav-logo { display: flex; align-items: center; margin: -60px 0; }
+        .nav-logo .logo-img { height: 200px; width: auto; display: block; object-fit: contain; }
+        .nav-links { display: flex; gap: 32px; align-items: center; }
+        .nav-links a { font-size: 0.92rem; font-weight: 500; color: var(--navy); transition: var(--transition); }
+        .nav-links a:hover { opacity: 0.6; }
+        .nav-links a.active { font-weight: 600; }
+        .nav-cta {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: var(--accent-bg); color: var(--white);
+            padding: 14px 28px; border-radius: 100px;
+            font-size: 0.9rem; font-weight: 600;
+            transition: var(--transition);
+        }
+        .nav-cta:hover { background: #3b5bdb; transform: translateY(-1px); }
+
+        /* MBCOD nav highlight */
+        .nav-mbcod-link {
+            display: inline-flex; align-items: center; gap: 6px;
+            font-size: 0.92rem; font-weight: 600; color: var(--navy);
+            position: relative; transition: var(--transition);
+        }
+        .nav-mbcod-link:hover { opacity: 0.7; }
+        .nav-mbcod-tag {
+            position: relative; overflow: hidden; isolation: isolate;
+            font-size: 0.65rem; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 0.8px;
+            color: var(--white);
+            background: linear-gradient(135deg, #1e3a8a 0%, #1e2a5a 35%, #0a0a14 100%);
+            padding: 4px 10px; border-radius: 100px;
+            box-shadow: 0 2px 8px rgba(30,58,138,0.3), inset 0 1px 0 rgba(255,255,255,0.15);
+        }
+        .nav-mbcod-tag::before {
+            content: '';
+            position: absolute; top: 0; left: -120%;
+            width: 60%; height: 100%;
+            background: linear-gradient(100deg, transparent 0%, rgba(255,255,255,0) 30%, rgba(180,200,255,0.7) 50%, rgba(255,255,255,0) 70%, transparent 100%);
+            transform: skewX(-20deg);
+            animation: navTagShine 3.2s ease-in-out infinite;
+            pointer-events: none; z-index: 1;
+        }
+        @keyframes navTagShine {
+            0%   { left: -120%; }
+            55%  { left: 130%; }
+            100% { left: 130%; }
+        }
+        @media (prefers-reduced-motion: reduce) { .nav-mbcod-tag::before { animation: none; } }
+
+        /* Article hero */
+        .post-hero {
+            padding: 80px 0 48px;
+            text-align: center;
+        }
+        .post-meta {
+            display: inline-flex; align-items: center; gap: 14px;
+            margin-bottom: 28px;
+        }
+        .post-cat {
+            background: var(--cream-dark);
+            border-radius: 100px;
+            padding: 7px 16px;
+            font-size: 0.84rem;
+            font-weight: 600;
+            color: var(--navy);
+        }
+        .post-date { font-size: 0.92rem; color: var(--gray); }
+        .post-hero h1 {
+            font-weight: 800;
+            font-size: clamp(2rem, 4.5vw, 3.4rem);
+            color: var(--navy);
+            line-height: 1.1;
+            letter-spacing: -0.01em;
+            max-width: 880px;
+            margin: 0 auto 22px;
+        }
+        .post-hero p {
+            color: var(--gray);
+            font-size: 1.05rem;
+            line-height: 1.7;
+            max-width: 640px;
+            margin: 0 auto;
+        }
+        .post-cover {
+            margin: 24px 0 0;
+            padding: 0 32px;
+        }
+        .post-cover img {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            height: clamp(320px, 56vw, 640px);
+            object-fit: cover;
+            border-radius: var(--radius-lg);
+        }
+
+        /* Body */
+        .post-body {
+            padding: 56px 0 80px;
+        }
+        .post-body-inner {
+            max-width: 760px;
+            margin: 0 auto;
+        }
+        .post-body-inner p {
+            color: var(--navy);
+            font-size: 1.05rem;
+            line-height: 1.85;
+            margin-bottom: 22px;
+        }
+        .post-body-inner h2 {
+            font-weight: 800;
+            font-size: 1.6rem;
+            color: var(--navy);
+            margin: 36px 0 14px;
+            line-height: 1.2;
+        }
+        .post-body-inner ul {
+            list-style: disc;
+            padding-left: 22px;
+            margin-bottom: 22px;
+            color: var(--navy);
+            font-size: 1.02rem;
+        }
+        .post-body-inner ul li { margin-bottom: 8px; line-height: 1.7; }
+        .post-body-inner blockquote {
+            border-left: 3px solid var(--accent);
+            padding: 8px 0 8px 22px;
+            margin: 28px 0;
+            font-style: italic;
+            color: var(--navy);
+            font-size: 1.1rem;
+        }
+
+        /* Related blogs */
+        .related {
+            padding: 0 0 80px;
+        }
+        .related-head {
+            display: flex; justify-content: space-between; align-items: end;
+            margin-bottom: 32px;
+            flex-wrap: wrap; gap: 16px;
+        }
+        .related-head h2 {
+            font-weight: 800;
+            font-size: clamp(1.6rem, 3vw, 2.2rem);
+            color: var(--navy);
+            line-height: 1.1;
+        }
+        .related-head a {
+            display: inline-flex; align-items: center; gap: 6px;
+            font-weight: 700; font-size: 0.92rem;
+            text-decoration: underline;
+            text-underline-offset: 4px;
+            color: var(--navy);
+        }
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        .related-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 14px;
+            transition: var(--transition);
+        }
+        .related-card:hover { transform: translateY(-4px); box-shadow: 0 16px 32px rgba(0,0,0,0.06); }
+        .related-card-img {
+            border-radius: var(--radius);
+            overflow: hidden;
+            aspect-ratio: 4/3;
+            margin-bottom: 16px;
+        }
+        .related-card-img img {
+            width: 100%; height: 100%; object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        .related-card:hover .related-card-img img { transform: scale(1.04); }
+        .related-card-meta {
+            font-size: 0.82rem; color: var(--gray);
+            margin-bottom: 6px;
+            padding: 0 6px;
+        }
+        .related-card h3 {
+            font-weight: 800;
+            font-size: 1.1rem;
+            line-height: 1.3;
+            color: var(--navy);
+            padding: 0 6px 10px;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--cream-dark);
+            border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+            padding: 64px 0 32px;
+        }
+        .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 60px; margin-bottom: 48px; }
+        .footer-label {
+            font-size: 0.72rem; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 0.12em; color: var(--gray-light); margin-bottom: 16px;
+        }
+        .footer-address h3 { font-weight: 800; font-size: 1.15rem; color: var(--navy); margin-bottom: 4px; }
+        .footer-address p { color: var(--navy); font-size: 0.95rem; line-height: 1.7; }
+        .footer ul li { margin-bottom: 8px; }
+        .footer ul li a { font-size: 0.92rem; color: var(--navy); }
+        .footer ul li a:hover { color: var(--accent); }
+        .footer-bottom {
+            border-top: 1px solid rgba(0,0,0,0.08);
+            padding-top: 24px; display: flex;
+            justify-content: space-between;
+            font-size: 0.82rem; color: var(--gray);
+            flex-wrap: wrap; gap: 12px;
+        }
+
+        @media (max-width: 1024px) {
+            .related-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 768px) {
+            .nav-links, .nav-cta { display: none; }
+            .navbar { padding: 12px 16px; }
+            .navbar-inner { padding: 10px 10px 10px 20px; }
+            .nav-logo { margin: -32px 0; }
+            .nav-logo .logo-img { height: 132px; }
+            .post-hero { padding: 56px 0 32px; }
+            .post-body { padding: 40px 0 60px; }
+            .related-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; gap: 40px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-banner">
+        Mobile auto electrician — we come to you across Geelong &amp; surrounds.
+        <a href="tel:+61352000000">Call now</a>
+    </div>
+
+    <nav class="navbar">
+        <div class="navbar-inner">
+            <a href="index.html" class="nav-logo">
+                <img src="assests/Sanicar-logo.png" alt="Sanicar Tech" class="logo-img">
+            </a>
+                        <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="services.html">Services</a>
+                <a href="mbcod.html" class="nav-mbcod-link">MBCOD <span class="nav-mbcod-tag">Premium</span></a>
+                <a href="areas.html">Areas</a>
+                <a href="blog.html" class="active">Blog</a>
+                <a href="index.html#why-us">About</a>
+                <a href="index.html#contact">Contact</a>
+            </div>
+            <a href="tel:+61352000000" class="nav-cta">Get a Free Quote</a>
+        </div>
+    </nav>
+
+    <article>
+        <header class="post-hero">
+            <div class="container">
+                <div class="post-meta">
+                    <span class="post-cat">ECU Coding</span>
+                    <span class="post-date">Apr 18, 2026</span>
+                </div>
+                <h1>ECU coding explained: when do you actually need it?</h1>
+                <p>A plain-English guide to ECU coding and module programming — when it's required, when it isn't, and how Sanicar Tech handles it in Geelong.</p>
+            </div>
+            <div class="post-cover">
+                <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1600&q=80" alt="ECU coding and key programming on European vehicle">
+            </div>
+        </header>
+
+        <div class="post-body">
+            <div class="container">
+                <div class="post-body-inner">
+                    <p>If you've replaced an ECU, BCM or even a key on a modern car, you've probably heard the term "coding". It's one of those words that gets used loosely — sometimes for software updates, sometimes for module configuration, and sometimes for adapting brand-new components to a vehicle. Here's what it actually means and when you genuinely need it.</p>
+
+                    <h2>What is ECU coding?</h2>
+                    <p>Coding is the process of telling a control module how it should behave on a specific vehicle. Two physically identical parts can ship with different software profiles depending on market, options or VIN. Coding writes the right profile to that module so it talks to the rest of the car correctly.</p>
+
+                    <h2>When is it required?</h2>
+                    <ul>
+                        <li>Replacing an ECU, TCU, BCM or gateway module</li>
+                        <li>Adding or removing options like cruise control, DRLs or AdBlue</li>
+                        <li>Fitting a new key or comfort access fob</li>
+                        <li>Installing manufacturer software updates</li>
+                        <li>Component adaptations after sensor replacement (steering angle, throttle body, DPF)</li>
+                    </ul>
+
+                    <blockquote>If your scan tool clears the fault but the warning light comes back the moment you drive off, you almost always have a coding or adaptation issue — not a hardware fault.</blockquote>
+
+                    <h2>What we use at Sanicar Tech</h2>
+                    <p>We run brand-correct dealer software and current online subscriptions for Mercedes-Benz, BMW, Audi, Volkswagen and Land Rover, plus broad-coverage tooling for Japanese and Korean makes. That means coding is done the same way the dealer would — without the dealer wait or the dealer markup.</p>
+
+                    <h2>How long does it take?</h2>
+                    <p>Most coding jobs take between 30 minutes and 2 hours once we're at the car. Some flash programming jobs (like full ECU software updates) take longer because the procedure itself is timed by the manufacturer's software. We'll always quote up front before starting.</p>
+                </div>
+            </div>
+        </div>
+    </article>
+
+    <section class="related">
+        <div class="container">
+            <div class="related-head">
+                <h2>More from the blog</h2>
+                <a href="blog.html">View all posts <i data-lucide="arrow-right" style="width:16px;height:16px;"></i></a>
+            </div>
+            <div class="related-grid">
+                <a href="blog-european-cars-dealer-vs-specialist.html" class="related-card">
+                    <div class="related-card-img">
+                        <img src="https://images.unsplash.com/photo-1542362567-b07e54358753?w=800&q=80" alt="European vehicle BMW Mercedes specialist">
+                    </div>
+                    <div class="related-card-meta">Apr 11, 2026</div>
+                    <h3>European cars: dealer vs independent specialist</h3>
+                </a>
+                <a href="blog-signs-battery-dying.html" class="related-card">
+                    <div class="related-card-img">
+                        <img src="https://images.unsplash.com/photo-1605152276897-4f618f831968?w=800&q=80" alt="Car battery testing service">
+                    </div>
+                    <div class="related-card-meta">Apr 02, 2026</div>
+                    <h3>5 signs your car battery is on its last legs</h3>
+                </a>
+                <a href="blog-no-start-diagnostic.html" class="related-card">
+                    <div class="related-card-img">
+                        <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=800&q=80" alt="No start diagnostic with scan tool">
+                    </div>
+                    <div class="related-card-meta">Mar 04, 2026</div>
+                    <h3>Car won't start? How a mobile auto electrician diagnoses it</h3>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-label">Address</div>
+                    <div class="footer-address">
+                        <h3>Sanicar Tech</h3>
+                        <p>Mobile Service<br>Geelong, VIC 3220</p>
+                    </div>
+                </div>
+                <div>
+                    <div class="footer-label">Pages</div>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="mbcod.html">MBCOD</a></li>
+                        <li><a href="areas.html">Service Areas</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="footer-label">Contact</div>
+                    <ul>
+                        <li><a href="tel:+61352000000">(03) 5200 0000</a></li>
+                        <li><a href="mailto:info@geelongautoelectrician.com.au">info@geelongautoelectrician.com.au</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>&copy; 2026 Sanicar Tech. All rights reserved.</span>
+                <span>Licensed Auto Electrician</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>lucide.createIcons();</script>
+</body>
+</html>

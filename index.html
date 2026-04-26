@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Geelong Auto Electrician | Mobile Car Electrical Services Geelong</title>
+    <title>Sanicar Tech | Mobile Car Electrical Services Geelong</title>
     <meta name="description" content="Geelong's trusted mobile auto electrician. Expert car electrical diagnostics, European vehicle specialist, trailer wiring, dash cam installation & AC regas. Servicing Geelong, Ocean Grove, Torquay & Armstrong Creek.">
     <meta name="keywords" content="auto electrician geelong, mobile auto electrician, car electrical diagnostics, european vehicle specialist, trailer wiring geelong, dash cam installation geelong, car aircon regas geelong">
     <meta name="robots" content="index, follow">
-    <meta property="og:title" content="Geelong Auto Electrician | Mobile Car Electrical Services">
+    <meta property="og:title" content="Sanicar Tech | Mobile Car Electrical Services">
     <meta property="og:description" content="Expert mobile auto electrician servicing Geelong & surrounds. Diagnostics, European vehicles, trailer wiring, dash cams & more.">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="en_AU">
@@ -43,9 +43,9 @@
             --navy-light: #2d2d44;
             --cream: #f5f0ea;
             --cream-dark: #ebe5dd;
-            --accent: #8b9cf7;
-            --accent-light: #c5cdf9;
-            --accent-bg: #bfc8f8;
+            --accent: #1e3a8a;
+            --accent-light: #1e3a8a;
+            --accent-bg: #1e3a8a;
             --white: #ffffff;
             --gray: #6b6b7b;
             --gray-light: #9b9bab;
@@ -87,7 +87,7 @@
         /* ===== NAVBAR ===== */
         .navbar {
             position: sticky; top: 0; z-index: 1000;
-            padding: 16px 32px;
+            padding: 8px 32px;
             background: transparent;
         }
         .navbar-inner {
@@ -95,7 +95,7 @@
             margin: 0 auto;
             background: var(--white);
             border-radius: 100px;
-            padding: 12px 12px 12px 28px;
+            padding: 6px 10px 6px 24px;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -104,42 +104,192 @@
             z-index: 1001;
         }
         .nav-logo {
-            font-family: var(--font-display);
-            font-weight: 900;
-            font-size: 1.3rem;
-            color: var(--navy);
-            display: flex; align-items: center; gap: 8px;
-            white-space: nowrap;
-        }
-        .nav-logo .logo-bolt {
             display: flex; align-items: center;
-            color: var(--accent);
+            white-space: nowrap;
+            margin: -60px 0;
+        }
+        .nav-logo .logo-img {
+            height: 200px;
+            width: auto;
+            display: block;
+            object-fit: contain;
         }
         .nav-links {
             display: flex; gap: 32px; align-items: center;
         }
-        .nav-links a {
+        .nav-links > a,
+        .nav-item-dropdown > a {
             font-size: 0.92rem;
             font-weight: 500;
             color: var(--navy);
             transition: var(--transition);
             position: relative;
         }
-        .nav-links a:hover { opacity: 0.6; }
-        .nav-links a.active {
+        .nav-links > a:hover,
+        .nav-item-dropdown > a:hover { opacity: 0.6; }
+        .nav-links > a.active,
+        .nav-item-dropdown > a.active {
             font-weight: 600;
         }
-        .nav-links a.active::after {
+        .nav-links > a.active::after,
+        .nav-item-dropdown > a.active::after {
             content: '';
             position: absolute; bottom: -4px; left: 0; right: 0;
             height: 2px;
             background: var(--navy);
             border-radius: 2px;
         }
+
+        /* ===== MEGA MENU (Services dropdown) ===== */
+        .nav-item-dropdown {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        .nav-item-dropdown > a {
+            display: inline-flex; align-items: center; gap: 4px;
+        }
+        .nav-item-dropdown > a .nav-caret {
+            width: 14px; height: 14px;
+            transition: transform 0.2s ease;
+        }
+        .nav-item-dropdown:hover > a .nav-caret { transform: rotate(180deg); }
+
+        .mega-menu {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(8px);
+            margin-top: 12px;
+            min-width: 1080px;
+            background: var(--white);
+            border-radius: 20px;
+            box-shadow: 0 16px 48px rgba(0,0,0,0.12);
+            padding: 32px 36px;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 32px;
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+            z-index: 1002;
+        }
+        .nav-item-dropdown:hover .mega-menu,
+        .nav-item-dropdown:focus-within .mega-menu {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+            transform: translateX(-50%) translateY(0);
+        }
+        /* Bridge so the menu doesn't disappear when moving cursor down. */
+        .nav-item-dropdown::after {
+            content: '';
+            position: absolute;
+            top: 100%; left: 0; right: 0;
+            height: 16px;
+        }
+        .mega-menu-col h4 {
+            font-family: var(--font-display);
+            font-weight: 800;
+            font-size: 1rem;
+            color: var(--navy);
+            margin-bottom: 16px;
+            line-height: 1.3;
+        }
+        .mega-menu-col ul {
+            list-style: none; padding: 0; margin: 0;
+            display: flex; flex-direction: column; gap: 10px;
+        }
+        .mega-menu-col a {
+            font-size: 0.88rem;
+            color: var(--gray);
+            transition: color 0.15s ease;
+        }
+        .mega-menu-col a:hover { color: var(--accent); }
+
+        /* MBCOD column variant inside the Services mega menu */
+        .mega-menu-col.is-mbcod {
+            border-left: 1px solid rgba(0,0,0,0.06);
+            padding-left: 24px;
+        }
+        .mega-menu-col.is-mbcod h4 {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .mega-menu-col.is-mbcod .nav-mbcod-tag {
+            font-size: 0.58rem;
+            padding: 3px 8px;
+        }
+
+        /* Narrow variant for the Locations dropdown */
+        .mega-menu.mega-menu-narrow {
+            min-width: 320px;
+            grid-template-columns: 1fr;
+        }
+
+        /* MBCOD nav highlight */
+        .nav-mbcod-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.92rem;
+            font-weight: 600;
+            color: var(--navy);
+            background: linear-gradient(135deg, #1a1a2e 0%, #2d2d44 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            position: relative;
+            transition: var(--transition);
+        }
+        .nav-mbcod-link:hover { opacity: 0.7; }
+        .nav-mbcod-tag {
+            position: relative;
+            overflow: hidden;
+            isolation: isolate;
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: var(--white);
+            background: linear-gradient(135deg, #1e3a8a 0%, #1e2a5a 35%, #0a0a14 100%);
+            padding: 4px 10px;
+            border-radius: 100px;
+            -webkit-background-clip: initial;
+            background-clip: initial;
+            box-shadow: 0 2px 8px rgba(30,58,138,0.3), inset 0 1px 0 rgba(255,255,255,0.15);
+        }
+        .nav-mbcod-tag::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -120%;
+            width: 60%; height: 100%;
+            background: linear-gradient(
+                100deg,
+                transparent 0%,
+                rgba(255,255,255,0) 30%,
+                rgba(180,200,255,0.7) 50%,
+                rgba(255,255,255,0) 70%,
+                transparent 100%
+            );
+            transform: skewX(-20deg);
+            animation: navTagShine 3.2s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 1;
+        }
+        @keyframes navTagShine {
+            0%   { left: -120%; }
+            55%  { left: 130%; }
+            100% { left: 130%; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .nav-mbcod-tag::before { animation: none; }
+        }
         .nav-cta {
             display: inline-flex; align-items: center; gap: 8px;
             background: var(--accent-bg);
-            color: var(--navy);
+            color: var(--white);
             padding: 14px 28px;
             border-radius: 100px;
             font-size: 0.9rem;
@@ -147,7 +297,7 @@
             transition: var(--transition);
             border: none;
         }
-        .nav-cta:hover { background: var(--accent); transform: translateY(-1px); }
+        .nav-cta:hover { background: #3b5bdb; transform: translateY(-1px); }
         .mobile-toggle {
             display: none;
             background: none; border: none;
@@ -249,9 +399,9 @@
         }
         .hero-btn-primary {
             background: var(--accent-bg);
-            color: var(--navy);
+            color: var(--white);
         }
-        .hero-btn-primary:hover { background: var(--accent); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(139,156,247,0.3); }
+        .hero-btn-primary:hover { background: #3b5bdb; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(139,156,247,0.3); }
         .hero-btn-secondary {
             background: none;
             color: var(--navy);
@@ -261,6 +411,59 @@
         }
         .hero-btn-secondary:hover { opacity: 0.7; }
         .hero-btn-secondary i { width: 16px; height: 16px; }
+
+        /* Hero MBCOD highlight pill */
+        .hero-mbcod-pill {
+            margin-top: 28px;
+            display: inline-flex;
+            align-items: center;
+            gap: 14px;
+            padding: 10px 18px 10px 10px;
+            background: linear-gradient(135deg, #0a0a14 0%, #1a1a2e 100%);
+            color: var(--white);
+            border-radius: 100px;
+            font-size: 0.85rem;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            max-width: 100%;
+        }
+        .hero-mbcod-pill::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 0% 50%, rgba(139,156,247,0.25) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        .hero-mbcod-pill:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+        .hero-mbcod-tag {
+            position: relative; z-index: 1;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: var(--white);
+            background: var(--accent-light);
+            padding: 6px 12px;
+            border-radius: 100px;
+            white-space: nowrap;
+        }
+        .hero-mbcod-text {
+            position: relative; z-index: 1;
+            color: rgba(255,255,255,0.9);
+        }
+        .hero-mbcod-text strong { color: var(--white); font-weight: 700; }
+        .hero-mbcod-arrow {
+            position: relative; z-index: 1;
+            width: 14px; height: 14px;
+            color: var(--accent-light);
+            transition: transform 0.2s ease;
+        }
+        .hero-mbcod-pill:hover .hero-mbcod-arrow { transform: translateX(3px); }
+        @media (max-width: 768px) {
+            .hero-mbcod-pill { font-size: 0.75rem; gap: 10px; padding: 8px 14px 8px 8px; }
+            .hero-mbcod-tag { font-size: 0.62rem; padding: 4px 9px; }
+        }
 
         /* Hero Image Collage */
         .hero-right {
@@ -304,13 +507,16 @@
             overflow: hidden;
             flex-shrink: 0;
         }
-        .collage-img img {
+        .collage-img img,
+        .collage-img video {
             width: 100%;
             height: 420px;
             object-fit: cover;
             transition: transform 0.5s ease;
+            display: block;
         }
-        .collage-img:hover img { transform: scale(1.05); }
+        .collage-img:hover img,
+        .collage-img:hover video { transform: scale(1.05); }
 
         /* ===== CONTACT ROW ===== */
         .contact-row {
@@ -332,11 +538,12 @@
         .contact-card-icon {
             width: 52px; height: 52px;
             background: var(--accent-bg);
+            color: var(--white);
             border-radius: 14px;
             display: flex; align-items: center; justify-content: center;
             flex-shrink: 0;
         }
-        .contact-card-icon i { width: 22px; height: 22px; color: var(--accent); }
+        .contact-card-icon i, .contact-card-icon svg { width: 22px; height: 22px; color: var(--white); }
         .contact-card h4 {
             font-family: var(--font-display);
             font-weight: 800;
@@ -366,7 +573,7 @@
 
         /* ===== SERVICES ===== */
         .services {
-            padding: 40px 0 80px;
+            padding: 20px 0 32px;
         }
         .services-header {
             margin-bottom: 12px;
@@ -405,20 +612,42 @@
         .services-desc a:hover { gap: 12px; }
         .services-desc a i { width: 16px; height: 16px; }
 
-        .services-scroll {
-            display: flex;
-            gap: 16px;
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            -webkit-overflow-scrolling: touch;
-            padding-bottom: 16px;
-            scrollbar-width: none;
+        .services-scroll-pin {
+            position: relative;
+            height: auto;
         }
-        .services-scroll::-webkit-scrollbar { display: none; }
+        .services-scroll {
+            position: relative;
+            display: flex;
+            align-items: center;
+            width: 100%;
+            overflow: hidden;
+            padding: 8px 0;
+            -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 4%, #000 96%, transparent 100%);
+                    mask-image: linear-gradient(90deg, transparent 0, #000 4%, #000 96%, transparent 100%);
+        }
+        .services-scroll-track {
+            display: flex;
+            gap: 20px;
+            padding: 0 32px;
+            width: max-content;
+            will-change: transform;
+            transform: translate3d(0, 0, 0);
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .services-scroll-pin { height: auto; }
+            .services-scroll {
+                position: static;
+                height: auto;
+                overflow-x: auto;
+                scrollbar-width: none;
+            }
+            .services-scroll::-webkit-scrollbar { display: none; }
+            .services-scroll-track { transform: none !important; }
+        }
 
         .service-card {
             flex: 0 0 300px;
-            scroll-snap-align: start;
             border-radius: var(--radius-lg);
             overflow: hidden;
             position: relative;
@@ -555,8 +784,10 @@
             color: var(--accent);
             transition: color 0.3s ease, transform 0.4s ease;
         }
-        .bento-feature:hover .bento-feature-icon i {
-            color: var(--navy);
+        .bento-feature:hover .bento-feature-icon { color: var(--white); }
+        .bento-feature:hover .bento-feature-icon i,
+        .bento-feature:hover .bento-feature-icon svg {
+            color: var(--white);
             transform: scale(1.15);
         }
 
@@ -786,16 +1017,25 @@
             color: var(--navy);
             transition: var(--transition);
         }
-        .area-tag:hover { background: var(--accent-bg); color: var(--navy); }
-        .area-tag i { width: 14px; height: 14px; }
-        .area-tag.primary { background: var(--accent-bg); }
+        .area-tag:hover { background: var(--accent-bg); color: var(--white); }
+        .area-tag:hover i, .area-tag:hover svg { color: var(--white); }
+        .area-tag i, .area-tag svg { width: 14px; height: 14px; }
+        .area-tag.primary { background: var(--accent-bg); color: var(--white); }
+        .area-tag.primary i, .area-tag.primary svg { color: var(--white); }
         .areas-map-img {
             border-radius: var(--radius-lg);
             overflow: hidden;
+            box-shadow: 0 12px 32px rgba(0,0,0,0.08);
         }
         .areas-map-img img {
             width: 100%; height: 420px;
             object-fit: cover;
+        }
+        .areas-map-img iframe {
+            display: block;
+            width: 100%;
+            height: 460px;
+            border: 0;
         }
 
         /* ===== FAQ ===== */
@@ -844,12 +1084,13 @@
         .faq-plus {
             width: 36px; height: 36px;
             background: var(--accent-bg);
+            color: var(--white);
             border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
             flex-shrink: 0;
             transition: var(--transition);
         }
-        .faq-plus i { width: 16px; height: 16px; color: var(--navy); transition: transform 0.3s ease; }
+        .faq-plus i, .faq-plus svg { width: 16px; height: 16px; color: var(--white); transition: transform 0.3s ease; }
         .faq-answer {
             max-height: 0;
             overflow: hidden;
@@ -861,13 +1102,13 @@
             color: var(--gray);
             line-height: 1.7;
         }
-        .faq-item.active .faq-plus { background: var(--navy); }
-        .faq-item.active .faq-plus i { color: var(--white); transform: rotate(45deg); }
+        .faq-item.active .faq-plus { background: var(--navy); color: var(--white); }
+        .faq-item.active .faq-plus i, .faq-item.active .faq-plus svg { color: var(--white); transform: rotate(45deg); }
         .faq-item.active .faq-answer { max-height: 300px; }
 
         /* ===== CTA ===== */
         .cta {
-            padding: 100px 0;
+            padding: 64px 0;
             margin: 0 32px;
             background: var(--accent-bg);
             border-radius: var(--radius-lg);
@@ -881,13 +1122,13 @@
             font-size: clamp(2.5rem, 6vw, 5rem);
             line-height: 0.92;
             letter-spacing: -0.03em;
-            color: var(--navy);
+            color: var(--white);
             max-width: 700px;
             margin: 0 auto 24px;
         }
         .cta p {
             font-size: 1.05rem;
-            color: var(--navy-light);
+            color: rgba(255,255,255,0.85);
             max-width: 480px;
             margin: 0 auto 36px;
             line-height: 1.7;
@@ -910,10 +1151,10 @@
         .cta-btn-dark:hover { background: var(--navy); color: var(--white); }
         .cta-btn-outline {
             background: transparent;
-            color: var(--navy);
-            border: 2px solid rgba(26,26,46,0.3);
+            color: var(--white);
+            border: 2px solid rgba(255,255,255,0.4);
         }
-        .cta-btn-outline:hover { border-color: var(--navy); }
+        .cta-btn-outline:hover { border-color: var(--white); }
 
         /* ===== TRUST BAR ===== */
         .trust-bar {
@@ -933,11 +1174,12 @@
         .trust-card-icon {
             width: 52px; height: 52px;
             background: var(--accent-bg);
+            color: var(--white);
             border-radius: 14px;
             display: flex; align-items: center; justify-content: center;
             flex-shrink: 0;
         }
-        .trust-card-icon i { width: 22px; height: 22px; color: var(--accent); }
+        .trust-card-icon i, .trust-card-icon svg { width: 22px; height: 22px; color: var(--white); }
         .trust-card h4 {
             font-weight: 800;
             font-size: 1rem;
@@ -1053,7 +1295,7 @@
             font-size: 1rem;
         }
         .mob-btn-primary { background: var(--navy); color: var(--white); }
-        .mob-btn-secondary { background: var(--accent-bg); color: var(--navy); }
+        .mob-btn-secondary { background: var(--accent-bg); color: var(--white); }
 
         /* ===== ANIMATIONS ===== */
         .fade-up {
@@ -1074,7 +1316,8 @@
             .mobile-toggle { display: block; }
             .navbar { padding: 12px 16px; }
             .navbar-inner { padding: 10px 10px 10px 20px; }
-            .nav-logo { font-size: 1.1rem; }
+            .nav-logo { margin: -32px 0; }
+            .nav-logo .logo-img { height: 132px; }
             .hero { padding: 40px 0 60px; }
             .hero .container { grid-template-columns: 1fr; min-height: auto; gap: 40px; }
             .hero h1 { font-size: 2.4rem; }
@@ -1097,7 +1340,7 @@
     {
         "@context": "https://schema.org",
         "@type": "AutoRepair",
-        "name": "Geelong Auto Electrician",
+        "name": "Sanicar Tech",
         "description": "Mobile auto electrician providing expert car electrical diagnostics, European vehicle specialist services, trailer wiring, and more across Geelong and surrounding areas.",
         "url": "https://geelongautoelectrician.com.au",
         "telephone": "+61352000000",
@@ -1145,14 +1388,62 @@
     <nav class="navbar">
         <div class="navbar-inner">
             <a href="/" class="nav-logo">
-                <span class="logo-bolt"><i data-lucide="zap" style="width:22px;height:22px;"></i></span>
-                Geelong Auto Electrician
+                <img src="assests/Sanicar-logo.png" alt="Sanicar Tech" class="logo-img">
             </a>
             <div class="nav-links">
                 <a href="#home" class="active">Home</a>
+                <div class="nav-item-dropdown">
+                    <a href="services.html">
+                        Services
+                        <i data-lucide="chevron-down" class="nav-caret"></i>
+                    </a>
+                    <div class="mega-menu" role="menu">
+                        <div class="mega-menu-col">
+                            <h4>Everyday Auto Electrical</h4>
+                            <ul>
+                                <li><a href="service-mobile-auto-electrician.html">Mobile Auto Electrician</a></li>
+                                <li><a href="service-car-electrical-diagnostics.html">Car Electrical Diagnostics</a></li>
+                                <li><a href="service-general-electrical-repairs.html">General Electrical Repairs</a></li>
+                            </ul>
+                        </div>
+                        <div class="mega-menu-col">
+                            <h4>Power &amp; Charging</h4>
+                            <ul>
+                                <li><a href="service-battery-charging-systems.html">Battery &amp; Charging Systems</a></li>
+                                <li><a href="service-car-air-conditioning.html">Car Air Conditioning</a></li>
+                            </ul>
+                        </div>
+                        <div class="mega-menu-col">
+                            <h4>Accessories &amp; Wiring</h4>
+                            <ul>
+                                <li><a href="service-dash-cam-accessories.html">Dash Cam &amp; Accessory Installation</a></li>
+                                <li><a href="service-trailer-wiring.html">Trailer Wiring &amp; Towbar</a></li>
+                            </ul>
+                        </div>
+                        <div class="mega-menu-col">
+                            <h4>Programming</h4>
+                            <ul>
+                                <li><a href="service-ecu-coding-programming.html">ECU Coding &amp; Programming</a></li>
+                            </ul>
+                        </div>
+                        <div class="mega-menu-col is-mbcod">
+                            <h4><a href="mbcod.html">MBCOD</a> <span class="nav-mbcod-tag">Premium</span></h4>
+                            <ul>
+                                <li><a href="mbcod.html#brands">Mercedes-Benz</a></li>
+                                <li><a href="mbcod.html#brands">BMW &amp; MINI</a></li>
+                                <li><a href="mbcod.html#brands">Audi</a></li>
+                                <li><a href="mbcod.html#brands">Volkswagen</a></li>
+                                <li><a href="mbcod.html#brands">Land Rover &amp; Range Rover</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <a href="mbcod.html" class="nav-mbcod-link">
+                    MBCOD <span class="nav-mbcod-tag">Premium</span>
+                </a>
+                <a href="areas.html">Areas</a>
+                <a href="blog.html">Blog</a>
                 <a href="#why-us">About</a>
-                <a href="/services.html">Services</a>
-                <a href="#testimonials">Reviews</a>
                 <a href="#contact">Contact</a>
             </div>
             <a href="tel:+61352000000" class="nav-cta">
@@ -1168,19 +1459,19 @@
     <div class="mobile-menu" id="mobileMenu">
         <div class="mobile-menu-header">
             <a href="/" class="nav-logo">
-                <span class="logo-bolt"><i data-lucide="zap" style="width:24px;height:24px;"></i></span>
-                Geelong Auto Electrician
+                <img src="assests/Sanicar-logo.png" alt="Sanicar Tech" class="logo-img">
             </a>
             <button class="mobile-menu-close" onclick="toggleMobileMenu()" aria-label="Close menu">
                 <i data-lucide="x"></i>
             </button>
         </div>
         <div class="mobile-menu-links">
-            <a href="#services" onclick="toggleMobileMenu()">Services</a>
+            <a href="services.html" onclick="toggleMobileMenu()">Services</a>
+            <a href="mbcod.html" onclick="toggleMobileMenu()">MBCOD</a>
+            <a href="areas.html" onclick="toggleMobileMenu()">Areas</a>
+            <a href="blog.html" onclick="toggleMobileMenu()">Blog</a>
             <a href="#why-us" onclick="toggleMobileMenu()">About</a>
-            <a href="#areas" onclick="toggleMobileMenu()">Areas</a>
-            <a href="#testimonials" onclick="toggleMobileMenu()">Reviews</a>
-            <a href="#faq" onclick="toggleMobileMenu()">FAQ</a>
+            <a href="#contact" onclick="toggleMobileMenu()">Contact</a>
         </div>
         <div class="mobile-menu-cta">
             <a href="tel:+61352000000" class="mob-btn-primary">
@@ -1220,22 +1511,30 @@
                     <!-- Column 1: scrolls top to bottom -->
                     <div class="collage-col collage-col-1">
                         <div class="collage-img"><img src="https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=500&q=80" alt="Auto electrician diagnosing car electrical fault in Geelong" loading="eager"></div>
-                        <div class="collage-img"><img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=500&q=80" alt="Mobile auto electrician van servicing vehicle on-site" loading="eager"></div>
+                        <div class="collage-img">
+                            <video autoplay muted loop playsinline preload="auto" poster="https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=500&q=80" aria-label="Auto electrician at work">
+                                <source src="assests/electrician.mp4" type="video/mp4">
+                            </video>
+                        </div>
                         <div class="collage-img"><img src="https://images.unsplash.com/photo-1625047509248-ec889cbff17f?w=500&q=80" alt="Professional mechanic working on engine wiring" loading="eager"></div>
                         <!-- Duplicated for seamless loop -->
                         <div class="collage-img"><img src="https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=500&q=80" alt="Auto electrician diagnosing car electrical fault" loading="lazy"></div>
-                        <div class="collage-img"><img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=500&q=80" alt="Mobile auto electrician van" loading="lazy"></div>
+                        <div class="collage-img">
+                            <video autoplay muted loop playsinline preload="auto" poster="https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=500&q=80" aria-label="Auto electrician at work">
+                                <source src="assests/electrician.mp4" type="video/mp4">
+                            </video>
+                        </div>
                         <div class="collage-img"><img src="https://images.unsplash.com/photo-1625047509248-ec889cbff17f?w=500&q=80" alt="Mechanic working on engine wiring" loading="lazy"></div>
                     </div>
                     <!-- Column 2: scrolls bottom to top -->
                     <div class="collage-col collage-col-2">
-                        <div class="collage-img"><img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=500&q=80" alt="European car diagnostics scan tool OBD" loading="eager"></div>
+                        <div class="collage-img"><img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=500&q=80" alt="Mercedes-Benz luxury vehicle on the road" loading="eager"></div>
                         <div class="collage-img"><img src="https://images.unsplash.com/photo-1620714223084-8fcacc6dfd8d?w=500&q=80" alt="Car battery replacement and testing service" loading="eager"></div>
-                        <div class="collage-img"><img src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=500&q=80" alt="Trailer wiring and towbar electrics installation" loading="eager"></div>
+                        <div class="collage-img"><img src="https://images.unsplash.com/photo-1542362567-b07e54358753?w=500&q=80" alt="BMW M-series performance vehicle" loading="eager"></div>
                         <!-- Duplicated for seamless loop -->
-                        <div class="collage-img"><img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=500&q=80" alt="European car diagnostics" loading="lazy"></div>
+                        <div class="collage-img"><img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=500&q=80" alt="Mercedes-Benz luxury vehicle" loading="lazy"></div>
                         <div class="collage-img"><img src="https://images.unsplash.com/photo-1620714223084-8fcacc6dfd8d?w=500&q=80" alt="Car battery replacement" loading="lazy"></div>
-                        <div class="collage-img"><img src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=500&q=80" alt="Trailer wiring installation" loading="lazy"></div>
+                        <div class="collage-img"><img src="https://images.unsplash.com/photo-1542362567-b07e54358753?w=500&q=80" alt="BMW M-series performance vehicle" loading="lazy"></div>
                     </div>
                 </div>
             </div>
@@ -1290,8 +1589,8 @@
                 <a href="#services">Explore all services <i data-lucide="chevron-right"></i></a>
             </div>
         </div>
-        <div style="padding-left: max(32px, calc((100vw - 1280px) / 2 + 32px));">
-            <div class="services-scroll">
+        <div class="services-scroll">
+            <div class="services-scroll-track">
                 <article class="service-card">
                     <img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=600&q=80" alt="Mobile auto electrician van servicing vehicle in Geelong" loading="lazy">
                     <div class="service-card-overlay">
@@ -1311,13 +1610,13 @@
                     </div>
                 </article>
                 <article class="service-card">
-                    <img src="https://images.unsplash.com/photo-1620714223084-8fcacc6dfd8d?w=600&q=80" alt="Car battery testing and replacement service Geelong" loading="lazy">
+                    <img src="https://images.unsplash.com/photo-1605152276897-4f618f831968?w=600&q=80" alt="Car battery testing and replacement service Geelong" loading="lazy">
                     <div class="service-card-overlay">
                         <h3>Battery &amp; Charging Systems</h3>
                     </div>
                 </article>
                 <article class="service-card">
-                    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=600&q=80" alt="Trailer wiring and towbar electrics installation" loading="lazy">
+                    <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=600&q=80" alt="Trailer wiring and towbar electrics installation" loading="lazy">
                     <div class="service-card-overlay">
                         <h3>Trailer Wiring &amp; Towbar Electrics</h3>
                     </div>
@@ -1329,19 +1628,74 @@
                     </div>
                 </article>
                 <article class="service-card">
-                    <img src="https://images.unsplash.com/photo-1631823460501-e0c045fa3fba?w=600&q=80" alt="Car air conditioning regas and compressor repair" loading="lazy">
+                    <img src="https://images.unsplash.com/photo-1486006920555-c77dcf18193c?w=600&q=80" alt="Car air conditioning regas and compressor repair" loading="lazy">
                     <div class="service-card-overlay">
                         <h3>Car Air Conditioning</h3>
                     </div>
                 </article>
                 <article class="service-card">
-                    <img src="https://images.unsplash.com/photo-1537462715-76a9028b3ef4?w=600&q=80" alt="ECU coding and key programming service" loading="lazy">
+                    <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=600&q=80" alt="ECU coding and key programming service" loading="lazy">
                     <div class="service-card-overlay">
                         <h3>ECU Coding &amp; Programming</h3>
                     </div>
                 </article>
                 <article class="service-card">
                     <img src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=600&q=80" alt="General car electrical repairs headlights fuses relays" loading="lazy">
+                    <div class="service-card-overlay">
+                        <h3>General Electrical Repairs</h3>
+                    </div>
+                </article>
+                <!-- Duplicate set for seamless marquee loop -->
+                <article class="service-card" aria-hidden="true">
+                    <img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=600&q=80" alt="" loading="lazy">
+                    <div class="service-card-overlay">
+                        <h3>Mobile Auto Electrician</h3>
+                    </div>
+                </article>
+                <article class="service-card" aria-hidden="true">
+                    <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=600&q=80" alt="" loading="lazy">
+                    <div class="service-card-overlay">
+                        <h3>Car Electrical Diagnostics</h3>
+                    </div>
+                </article>
+                <article class="service-card" aria-hidden="true">
+                    <img src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?w=600&q=80" alt="" loading="lazy">
+                    <div class="service-card-overlay">
+                        <h3>European Vehicle Specialist</h3>
+                    </div>
+                </article>
+                <article class="service-card" aria-hidden="true">
+                    <img src="https://images.unsplash.com/photo-1605152276897-4f618f831968?w=600&q=80" alt="" loading="lazy">
+                    <div class="service-card-overlay">
+                        <h3>Battery &amp; Charging Systems</h3>
+                    </div>
+                </article>
+                <article class="service-card" aria-hidden="true">
+                    <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=600&q=80" alt="" loading="lazy">
+                    <div class="service-card-overlay">
+                        <h3>Trailer Wiring &amp; Towbar Electrics</h3>
+                    </div>
+                </article>
+                <article class="service-card" aria-hidden="true">
+                    <img src="https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=600&q=80" alt="" loading="lazy">
+                    <div class="service-card-overlay">
+                        <h3>Dash Cam &amp; Accessories</h3>
+                    </div>
+                </article>
+                <article class="service-card" aria-hidden="true">
+                    <img src="https://images.unsplash.com/photo-1486006920555-c77dcf18193c?w=600&q=80" alt="" loading="lazy">
+                    <div class="service-card-overlay">
+                        <h3>Car Air Conditioning</h3>
+                    </div>
+                </article>
+                <article class="service-card" aria-hidden="true">
+                    <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=600&q=80" alt="" loading="lazy">
+                    <div class="service-card-overlay">
+                        <h3>ECU Coding &amp; Programming</h3>
+                    </div>
+                </article>
+                <article class="service-card" aria-hidden="true">
+                    <img src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=600&q=80" alt="" loading="lazy">
                     <div class="service-card-overlay">
                         <h3>General Electrical Repairs</h3>
                     </div>
@@ -1521,23 +1875,28 @@
                     <p>We service vehicles throughout the greater Geelong region. From Torquay to Ocean Grove and everywhere in between. Not sure if we cover your area? Give us a call.</p>
                     <div class="area-group-label">Primary Service Areas</div>
                     <div class="area-tags">
-                        <span class="area-tag primary"><i data-lucide="map-pin"></i> Geelong</span>
-                        <span class="area-tag primary"><i data-lucide="map-pin"></i> Ocean Grove</span>
-                        <span class="area-tag primary"><i data-lucide="map-pin"></i> Torquay</span>
-                        <span class="area-tag primary"><i data-lucide="map-pin"></i> Armstrong Creek</span>
+                        <a href="areas.html" class="area-tag primary"><i data-lucide="map-pin"></i> Geelong</a>
+                        <a href="areas.html" class="area-tag primary"><i data-lucide="map-pin"></i> Ocean Grove</a>
+                        <a href="areas.html" class="area-tag primary"><i data-lucide="map-pin"></i> Torquay</a>
+                        <a href="areas.html" class="area-tag primary"><i data-lucide="map-pin"></i> Armstrong Creek</a>
                     </div>
                     <div class="area-group-label">Also Servicing</div>
                     <div class="area-tags">
-                        <span class="area-tag"><i data-lucide="map-pin"></i> Charlemont</span>
-                        <span class="area-tag"><i data-lucide="map-pin"></i> Waurn Ponds</span>
-                        <span class="area-tag"><i data-lucide="map-pin"></i> Belmont</span>
-                        <span class="area-tag"><i data-lucide="map-pin"></i> Highton</span>
-                        <span class="area-tag"><i data-lucide="map-pin"></i> Newtown</span>
-                        <span class="area-tag"><i data-lucide="map-pin"></i> Surrounding Suburbs</span>
+                        <a href="areas.html" class="area-tag"><i data-lucide="map-pin"></i> Charlemont</a>
+                        <a href="areas.html" class="area-tag"><i data-lucide="map-pin"></i> Waurn Ponds</a>
+                        <a href="areas.html" class="area-tag"><i data-lucide="map-pin"></i> Belmont</a>
+                        <a href="areas.html" class="area-tag"><i data-lucide="map-pin"></i> Highton</a>
+                        <a href="areas.html" class="area-tag"><i data-lucide="map-pin"></i> Newtown</a>
+                        <a href="areas.html" class="area-tag"><i data-lucide="map-pin"></i> Surrounding Suburbs</a>
                     </div>
                 </div>
                 <div class="areas-map-img fade-up">
-                    <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?w=800&q=80" alt="Map showing Geelong mobile auto electrician service coverage area" loading="lazy">
+                    <iframe
+                        src="https://www.google.com/maps?q=Melbourne,+Victoria,+Australia&output=embed&z=9"
+                        title="Melbourne and Geelong service area map"
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"
+                        allowfullscreen></iframe>
                 </div>
             </div>
         </div>
@@ -1649,7 +2008,7 @@
                 <div>
                     <div class="footer-label">Address</div>
                     <div class="footer-address">
-                        <h3>Geelong Auto Electrician</h3>
+                        <h3>Sanicar Tech</h3>
                         <p>Mobile Service<br>Geelong, VIC 3220</p>
                     </div>
                     <div class="footer-contact-block">
@@ -1664,8 +2023,8 @@
                 <div>
                     <div class="footer-label">Pages</div>
                     <ul>
-                        <li><a href="#">About</a></li>
-                        <li><a href="/services.html">Services</a></li>
+                        <li><a href="#why-us">About</a></li>
+                        <li><a href="services.html">Services</a></li>
                         <li><a href="#areas">Service Areas</a></li>
                         <li><a href="#testimonials">Reviews</a></li>
                         <li><a href="#faq">FAQ</a></li>
@@ -1675,19 +2034,20 @@
                 <div>
                     <div class="footer-label">Services</div>
                     <ul>
-                        <li><a href="#">Mobile Auto Electrician</a></li>
-                        <li><a href="#">Car Electrical Diagnostics</a></li>
-                        <li><a href="#">European Vehicles</a></li>
-                        <li><a href="#">Battery &amp; Charging</a></li>
-                        <li><a href="#">Trailer Wiring</a></li>
-                        <li><a href="#">Dash Cam Installation</a></li>
-                        <li><a href="#">Car Air Conditioning</a></li>
-                        <li><a href="#">ECU Coding</a></li>
+                        <li><a href="service-mobile-auto-electrician.html">Mobile Auto Electrician</a></li>
+                        <li><a href="service-car-electrical-diagnostics.html">Car Electrical Diagnostics</a></li>
+                        <li><a href="service-battery-charging-systems.html">Battery &amp; Charging</a></li>
+                        <li><a href="service-trailer-wiring.html">Trailer Wiring</a></li>
+                        <li><a href="service-dash-cam-accessories.html">Dash Cam Installation</a></li>
+                        <li><a href="service-car-air-conditioning.html">Car Air Conditioning</a></li>
+                        <li><a href="service-ecu-coding-programming.html">ECU Coding</a></li>
+                        <li><a href="service-general-electrical-repairs.html">General Electrical Repairs</a></li>
+                        <li><a href="mbcod.html"><strong>MBCOD &mdash; European</strong></a></li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <span>&copy; 2026 Geelong Auto Electrician. All rights reserved.</span>
+                <span>&copy; 2026 Sanicar Tech. All rights reserved.</span>
                 <span>ABN: XX XXX XXX XXX &nbsp;|&nbsp; Licensed Auto Electrician</span>
             </div>
         </div>
@@ -1715,7 +2075,7 @@
                         el.classList.remove('slide-in');
                     }, 400);
                 }, 400);
-            }, 5000);
+            }, 2000);
         })();
 
         // Hero collage — scroll-based parallax offset
