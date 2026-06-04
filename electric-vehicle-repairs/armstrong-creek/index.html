@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/assests/Sanicar-logo.png">
+    <link rel="apple-touch-icon" href="/assests/Sanicar-logo.png">
     <title>Electric Vehicle Specialist in Armstrong Creek | Sanicar Tech</title>
     <meta name="description" content="Mobile EV and hybrid diagnostics for Armstrong Creek drivers across the Greater Geelong growth corridor. Battery testing, fault detection, and written repair quotes.">
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
@@ -12,7 +14,7 @@
     <meta property="og:description" content="Mobile EV and hybrid diagnostics for Armstrong Creek drivers across the Greater Geelong growth corridor. Battery testing, fault detection, and written repair quotes.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.sanicar.com.au/electric-vehicle-repairs/armstrong-creek">
-    <meta property="og:image" content="image url">
+    <meta property="og:image" content="https://www.sanicar.com.au/assests/Sanicar-logo.png">
     <meta property="og:image:alt" content="Electric Vehicle Specialist in Armstrong Creek">
     <meta property="og:site_name" content="SaniCar Tech">
     <meta property="og:locale" content="en_AU">
@@ -673,12 +675,12 @@
         }
         .footer-brand { display: flex; flex-direction: column; gap: 18px; }
         .footer-logo-link { display: inline-block; }
-        .footer-logo { height: 56px; width: auto; }
+        .footer-logo { height: 140px; width: auto; }
         .footer-intro { font-size: 0.92rem; color: var(--navy); opacity: 0.75; line-height: 1.65; max-width: 360px; }
         .footer-socials { display: flex; gap: 10px; margin-top: 6px; }
         .footer-socials a { width: 40px; height: 40px; border-radius: 50%; background: var(--navy); color: var(--white); display: inline-flex; align-items: center; justify-content: center; transition: var(--transition); }
         .footer-socials a:hover { background: var(--accent-bg); transform: translateY(-2px); }
-        .footer-socials i { width: 18px; height: 18px; }
+        .footer-socials i, .footer-socials svg { width: 18px; height: 18px; display: block; }
         .footer-hours { list-style: none; padding: 0; margin: 0; }
         .footer-hours li { display: flex; justify-content: space-between; padding: 7px 0; font-size: 0.9rem; color: var(--navy); border-bottom: 1px solid rgba(26,26,46,0.08); }
         .footer-hours li:last-child { border-bottom: none; }
@@ -1006,6 +1008,15 @@
             .related-services { padding: 56px 0; }
             .related-grid { grid-template-columns: 1fr; }
         }
+        /* Breadcrumbs */
+        .breadcrumbs { background: rgba(255,255,255,0.55); border-bottom: 1px solid rgba(26,26,46,0.08); padding: 14px 0; font-size: 0.875rem; }
+        .breadcrumbs ol { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; }
+        .breadcrumbs li { display: inline-flex; align-items: center; color: #6b6b7b; }
+        .breadcrumbs li + li::before { content: '/'; margin: 0 10px; opacity: 0.4; }
+        .breadcrumbs a { color: #1a1a2e; opacity: 0.7; text-decoration: none; transition: opacity 0.2s; }
+        .breadcrumbs a:hover { opacity: 1; text-decoration: underline; }
+        .breadcrumbs li:last-child { color: #1a1a2e; font-weight: 600; }
+        @media (max-width: 640px) { .breadcrumbs { font-size: 0.8rem; padding: 10px 0; } .breadcrumbs li + li::before { margin: 0 6px; } }
     </style>
 </head>
 <body>
@@ -1041,14 +1052,25 @@
                     European Specialist
                     <span class="nav-european-tag"><i data-lucide="sparkles"></i> Premium</span>
                 </a>
-                <a href="/areas.html">Service Areas</a>
+                <a href="/serviceareas">Service Areas</a>
                 <a href="/#why-us">About</a>
                 <a href="/contact">Contact</a>
             </div>
-            <a href="#contact" class="nav-cta">Get a Free Quote</a>
+            <a href="/contact" class="nav-cta">Get a Free Quote</a>
             <button class="mobile-toggle" onclick="toggleMobileMenu()" aria-label="Open menu">
                 <i data-lucide="menu"></i>
             </button>
+        </div>
+    </nav>
+
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <div class="container">
+            <ol>
+                <li><a href="/">Home</a></li>
+                <li><a href="/services">Services</a></li>
+                <li><a href="/electric-vehicle-repairs">EV &amp; Hybrid</a></li>
+                <li>Armstrong Creek</li>
+            </ol>
         </div>
     </nav>
 
@@ -1066,13 +1088,13 @@
             <a href="/" onclick="toggleMobileMenu()">Home</a>
             <a href="/services" class="active" onclick="toggleMobileMenu()">Services</a>
             <a href="/european-car-diagnostics" onclick="toggleMobileMenu()">European Specialist</a>
-            <a href="/areas.html" onclick="toggleMobileMenu()">Service Areas</a>
+            <a href="/serviceareas" onclick="toggleMobileMenu()">Service Areas</a>
             <a href="/#why-us" onclick="toggleMobileMenu()">About</a>
             <a href="/contact" onclick="toggleMobileMenu()">Contact</a>
         </div>
         <div class="mobile-menu-cta">
             <a href="tel:+61406642600" class="mob-btn-primary"><i data-lucide="phone" style="width:18px;height:18px;"></i> Call 0406 642 600</a>
-            <a href="#contact" class="mob-btn-secondary"><i data-lucide="calendar" style="width:18px;height:18px;"></i> Book Online</a>
+            <a href="/contact" class="mob-btn-secondary"><i data-lucide="calendar" style="width:18px;height:18px;"></i> Book Online</a>
         </div>
     </div>
 
@@ -1488,13 +1510,13 @@
                     </p>
                     <div class="footer-socials">
                         <a href="https://www.facebook.com/sanicartech" target="_blank" rel="noopener" aria-label="Facebook">
-                            <i data-lucide="facebook"></i>
+                            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
                         </a>
                         <a href="https://www.instagram.com/sanicar369/" target="_blank" rel="noopener" aria-label="Instagram">
-                            <i data-lucide="instagram"></i>
+                            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
                         </a>
                         <a href="https://search.google.com/local/reviews?placeid=ChIJDzHajpJH1moRF2-BoDo7YSc" target="_blank" rel="noopener" aria-label="Read our Google Reviews" class="footer-gmb">
-                            <i data-lucide="star"></i>
+                            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M21.35 11.1h-9.17v2.73h6.51c-.33 3.81-3.5 5.44-6.5 5.44C8.36 19.27 5 16.25 5 12c0-4.1 3.2-7.27 7.2-7.27 3.09 0 4.9 1.97 4.9 1.97L19 4.72S16.56 2 12.1 2C6.42 2 2.03 6.8 2.03 12c0 5.05 4.13 10 10.22 10 5.35 0 9.25-3.67 9.25-9.09 0-1.15-.15-1.81-.15-1.81z"/></svg>
                         </a>
                     </div>
                 </div>
@@ -1503,8 +1525,8 @@
                     <ul>
                         <li><a href="/">Home</a></li>
                         <li><a href="/services">Services</a></li>
-                        <li><a href="/areas.html">Service Areas</a></li>
-                        <li><a href="/blog.html">Blog</a></li>
+                        <li><a href="/serviceareas">Service Areas</a></li>
+                        <li><a href="/blogs">Blog</a></li>
                         <li><a href="/contact">Contact</a></li>
                     </ul>
                 </div>

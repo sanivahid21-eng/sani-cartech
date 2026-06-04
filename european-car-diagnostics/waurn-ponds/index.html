@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/assests/Sanicar-logo.png">
+    <link rel="apple-touch-icon" href="/assests/Sanicar-logo.png">
     <title>European Car Diagnostics in Waurn Ponds | Sanicar Tech</title>
     <meta name="description" content="Mobile diagnostics for European cars in Waurn Ponds. Fully mobile across Southern Geelong with dealer-level diagnostics and written repair quotes.">
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
@@ -12,7 +14,7 @@
     <meta property="og:description" content="European car diagnostic services for Waurn Ponds drivers across Southern Geelong. Accurate electronic diagnostics, fault finding, and transparent written repair quotes.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.sanicar.com.au/european-car-diagnostics/waurn-ponds">
-    <meta property="og:image" content="image url">
+    <meta property="og:image" content="https://www.sanicar.com.au/assests/Sanicar-logo.png">
     <meta property="og:image:alt" content="European Car Diagnostics in Waurn Ponds">
     <meta property="og:site_name" content="SaniCar Tech">
     <meta property="og:locale" content="en_AU">
@@ -962,6 +964,15 @@
             .related-services { padding: 64px 0; }
             .related-grid { grid-template-columns: 1fr; }
         }
+        /* Breadcrumbs */
+        .breadcrumbs { background: rgba(0,0,0,0.35); border-bottom: 1px solid rgba(255,255,255,0.08); padding: 14px 0; font-size: 0.875rem; position: relative; z-index: 5; }
+        .breadcrumbs ol { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; }
+        .breadcrumbs li { display: inline-flex; align-items: center; color: rgba(255,255,255,0.55); }
+        .breadcrumbs li + li::before { content: '/'; margin: 0 10px; opacity: 0.4; }
+        .breadcrumbs a { color: rgba(255,255,255,0.75); text-decoration: none; transition: color 0.2s; }
+        .breadcrumbs a:hover { color: #fff; text-decoration: underline; }
+        .breadcrumbs li:last-child { color: #fff; font-weight: 600; }
+        @media (max-width: 640px) { .breadcrumbs { font-size: 0.8rem; padding: 10px 0; } .breadcrumbs li + li::before { margin: 0 6px; } }
     </style>
 </head>
 <body>
@@ -976,14 +987,25 @@
                 <a href="#brands">Brands</a>
                 <a href="#capabilities">Capabilities</a>
                 <a href="#why">Why Sanicar</a>
-                <a href="/areas.html">Areas</a>
-                <a href="/blog.html">Blog</a>
+                <a href="/serviceareas">Areas</a>
+                <a href="/blogs">Blog</a>
                 <a href="/">Sanicar Tech</a>
             </div>
-            <a href="#contact" class="nav-cta">
+            <a href="/contact" class="nav-cta">
                 <i data-lucide="phone" style="width:14px;height:14px;"></i>
                 Book Now
             </a>
+        </div>
+    </nav>
+
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <div class="container">
+            <ol>
+                <li><a href="/">Home</a></li>
+                <li><a href="/services">Services</a></li>
+                <li><a href="/european-car-diagnostics">European Diagnostics</a></li>
+                <li>Waurn Ponds</li>
+            </ol>
         </div>
     </nav>
 
