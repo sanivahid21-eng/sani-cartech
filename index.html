@@ -14,8 +14,8 @@
     <meta property="og:description" content="Mobile auto electrician services in Geelong specialising in diagnostics, ECU coding, European vehicles, dash cams, battery issues, and on-site auto electrical repairs.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.sanicar.com.au/">
-    <meta property="og:image" content="https://www.sanicar.com.au/assests/mobile-auto-electrician-in-geelong.png">
-    <meta property="og:image:alt" content="Mobile auto electrician in Geelong">
+    <meta property="og:image" content="https://www.sanicar.com.au/assests/mobile-auto-electrician-in-geelong-og.jpg">
+    <meta property="og:image:alt" content="mobile-auto-electrician-in-geelong">
     <meta property="og:site_name" content="SaniCar Tech">
     <meta property="og:locale" content="en_AU">
     <meta name="geo.region" content="AU-VIC">
@@ -734,38 +734,72 @@
         .services-desc a:hover { gap: 12px; }
         .services-desc a i { width: 16px; height: 16px; }
 
-        .services-scroll-pin {
-            position: relative;
-            height: auto;
-        }
+        /* Services Carousel */
+        .services-carousel { position: relative; }
         .services-scroll {
             position: relative;
-            display: flex;
-            align-items: center;
-            width: 100%;
-            overflow: hidden;
+            overflow-x: auto;
+            overflow-y: hidden;
+            scroll-behavior: smooth;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
             padding: 8px 0;
             -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 4%, #000 96%, transparent 100%);
                     mask-image: linear-gradient(90deg, transparent 0, #000 4%, #000 96%, transparent 100%);
         }
+        .services-scroll::-webkit-scrollbar { display: none; }
         .services-scroll-track {
             display: flex;
             gap: 20px;
             padding: 0 32px;
             width: max-content;
-            will-change: transform;
-            transform: translate3d(0, 0, 0);
         }
-        @media (prefers-reduced-motion: reduce) {
-            .services-scroll-pin { height: auto; }
-            .services-scroll {
-                position: static;
-                height: auto;
-                overflow-x: auto;
-                scrollbar-width: none;
-            }
-            .services-scroll::-webkit-scrollbar { display: none; }
-            .services-scroll-track { transform: none !important; }
+        .services-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: var(--white);
+            border: 1px solid rgba(26,26,46,0.08);
+            box-shadow: 0 8px 24px rgba(26,26,46,0.14);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 5;
+            transition: var(--transition);
+            color: var(--navy);
+            padding: 0;
+        }
+        .services-arrow:hover:not(:disabled) { background: var(--navy); color: var(--white); transform: translateY(-50%) scale(1.05); }
+        .services-arrow:disabled { opacity: 0.3; cursor: not-allowed; }
+        .services-arrow i { width: 22px; height: 22px; }
+        .services-arrow-prev { left: 28px; }
+        .services-arrow-next { right: 28px; }
+        .services-dots {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 32px;
+        }
+        .services-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(26,26,46,0.2);
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            padding: 0;
+        }
+        .services-dot.active { background: var(--accent); width: 28px; border-radius: 4px; }
+        .services-dot:hover:not(.active) { background: rgba(26,26,46,0.4); }
+        @media (max-width: 768px) {
+            .services-arrow { display: none; }
+            .services-dots { margin-top: 20px; }
         }
 
         .service-card {
@@ -776,6 +810,8 @@
             height: 440px;
             cursor: pointer;
             transition: var(--transition);
+            scroll-snap-align: start;
+            scroll-snap-stop: always;
         }
         .service-card:hover { transform: translateY(-4px); }
         .service-card img {
@@ -1478,7 +1514,7 @@
             .services { padding: 16px 0 24px; }
             .services-header h2 { font-size: 2.2rem; }
             .services-desc { flex-direction: column; align-items: flex-start; gap: 16px; margin-bottom: 24px; }
-            .service-card { flex: 0 0 280px; height: 380px; }
+            .service-card { flex: 0 0 280px; height: 380px; scroll-snap-align: center; }
             .service-card-overlay { padding: 110px 20px 22px; }
             .service-card-overlay h3 { font-size: 1.15rem; }
             .service-card-overlay p { font-size: 0.8rem; }
@@ -1734,66 +1770,51 @@
                 <a href="#services">Explore all services <i data-lucide="chevron-right"></i></a>
             </div>
         </div>
-        <div class="services-scroll">
-            <div class="services-scroll-track">
-                <article class="service-card">
-                    <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=600&q=80" alt="Car electrical diagnostics using advanced scan tools in Geelong" loading="lazy">
-                    <div class="service-card-overlay">
-                        <h3>Car Electrical Diagnostics</h3>
-                        <p><strong>Car diagnostic services</strong> using <strong>advanced scan tools</strong>, live data analysis, and system testing for accurate fault detection.</p>
-                    </div>
-                </article>
-                <article class="service-card">
-                    <img src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?w=600&q=80" alt="European vehicle diagnostics for BMW, Mercedes-Benz, Audi and Volkswagen in Geelong" loading="lazy">
-                    <div class="service-card-overlay">
-                        <h3>European Vehicle Diagnostics</h3>
-                        <p><strong>European car repair specialist</strong> providing diagnostics for <strong>BMW, Mercedes-Benz, Audi, Volkswagen, MINI</strong>, and other European vehicles.</p>
-                    </div>
-                </article>
-                <article class="service-card">
-                    <img src="https://images.unsplash.com/photo-1620714223084-8fcacc6dfd8d?w=600&q=80" alt="Hybrid and electric vehicle high-voltage battery diagnostics" loading="lazy">
-                    <div class="service-card-overlay">
-                        <h3>Hybrid &amp; EV Diagnostics</h3>
-                        <p><strong>Electrical vehicle repair and diagnostics</strong> including high-voltage checks, <strong>hybrid battery testing</strong>, EV charging and inverter fault detection.</p>
-                    </div>
-                </article>
-                <article class="service-card">
-                    <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=600&q=80" alt="ECU programming, BCM and module coding for modern vehicles" loading="lazy">
-                    <div class="service-card-overlay">
-                        <h3>ECU &amp; Module Systems</h3>
-                        <p><strong>Car ECU programming tools</strong> and diagnostics for BCM issues, <strong>immobiliser faults</strong>, airbag module resets, and coding support.</p>
-                    </div>
-                </article>
-                <!-- Duplicate set for seamless marquee loop -->
-                <article class="service-card" aria-hidden="true">
-                    <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=600&q=80" alt="" loading="lazy">
-                    <div class="service-card-overlay">
-                        <h3>Car Electrical Diagnostics</h3>
-                        <p><strong>Car diagnostic services</strong> using <strong>advanced scan tools</strong>, live data analysis, and system testing for accurate fault detection.</p>
-                    </div>
-                </article>
-                <article class="service-card" aria-hidden="true">
-                    <img src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?w=600&q=80" alt="" loading="lazy">
-                    <div class="service-card-overlay">
-                        <h3>European Vehicle Diagnostics</h3>
-                        <p><strong>European car repair specialist</strong> providing diagnostics for <strong>BMW, Mercedes-Benz, Audi, Volkswagen, MINI</strong>, and other European vehicles.</p>
-                    </div>
-                </article>
-                <article class="service-card" aria-hidden="true">
-                    <img src="https://images.unsplash.com/photo-1620714223084-8fcacc6dfd8d?w=600&q=80" alt="" loading="lazy">
-                    <div class="service-card-overlay">
-                        <h3>Hybrid &amp; EV Diagnostics</h3>
-                        <p><strong>Electrical vehicle repair and diagnostics</strong> including high-voltage checks, <strong>hybrid battery testing</strong>, EV charging and inverter fault detection.</p>
-                    </div>
-                </article>
-                <article class="service-card" aria-hidden="true">
-                    <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=600&q=80" alt="" loading="lazy">
-                    <div class="service-card-overlay">
-                        <h3>ECU &amp; Module Systems</h3>
-                        <p><strong>Car ECU programming tools</strong> and diagnostics for BCM issues, <strong>immobiliser faults</strong>, airbag module resets, and coding support.</p>
-                    </div>
-                </article>
+        <div class="services-carousel">
+            <button type="button" class="services-arrow services-arrow-prev" aria-label="Previous services"><i data-lucide="chevron-left"></i></button>
+            <div class="services-scroll" id="servicesScroll">
+                <div class="services-scroll-track">
+                    <a href="/services/car-diagnostics" class="service-card">
+                        <img src="/assests/car-diagnosis-geelong.jpg" alt="car-diagnosis-geelong" loading="lazy">
+                        <div class="service-card-overlay">
+                            <h3>Car Electrical Diagnostics</h3>
+                            <p><strong>Car diagnostic services</strong> using <strong>advanced scan tools</strong>, live data analysis, and system testing for accurate fault detection.</p>
+                        </div>
+                    </a>
+                    <a href="/services/car-repair" class="service-card">
+                        <img src="/assests/car-repair-services-geelong.jpg" alt="car-repair-services-geelong" loading="lazy">
+                        <div class="service-card-overlay">
+                            <h3>Car Repair Services</h3>
+                            <p><strong>Mobile car repair</strong> for <strong>brakes, suspension, electrical faults</strong>, and general servicing &mdash; diagnostics-driven repairs from a trusted Geelong mechanic.</p>
+                        </div>
+                    </a>
+                    <a href="/electric-vehicle-repairs" class="service-card">
+                        <img src="/assests/electric-vehicle-repair-geelong.jpg" alt="electric-vehicle-repair-geelong" loading="lazy">
+                        <div class="service-card-overlay">
+                            <h3>Hybrid &amp; EV Diagnostics</h3>
+                            <p><strong>Electrical vehicle repair and diagnostics</strong> including high-voltage checks, <strong>hybrid battery testing</strong>, EV charging and inverter fault detection.</p>
+                        </div>
+                    </a>
+                    <a href="/european-car-tuning-ecu-coding" class="service-card">
+                        <img src="/assests/car-ecu-coding-geelong.png" alt="car-ecu-coding-geelong" loading="lazy">
+                        <div class="service-card-overlay">
+                            <h3>ECU &amp; Module Systems</h3>
+                            <p><strong>Car ECU programming tools</strong> and diagnostics for BCM issues, <strong>immobiliser faults</strong>, airbag module resets, and coding support.</p>
+                        </div>
+                    </a>
+                    <a href="/european-car-diagnostics" class="service-card">
+                        <img src="/assests/european-car-diagnosis-geelong.jpg" alt="european-car-diagnosis-geelong" loading="lazy">
+                        <div class="service-card-overlay">
+                            <h3>European Vehicle Diagnostics</h3>
+                            <p><strong>European car repair specialist</strong> providing diagnostics for <strong>BMW, Mercedes-Benz, Audi, Volkswagen, MINI</strong>, and other European vehicles.</p>
+                        </div>
+                    </a>
+                </div>
             </div>
+            <button type="button" class="services-arrow services-arrow-next" aria-label="Next services"><i data-lucide="chevron-right"></i></button>
+        </div>
+        <div class="container">
+            <div class="services-dots" id="servicesDots"></div>
         </div>
     </section>
 
@@ -1802,7 +1823,7 @@
         <div class="container">
             <div class="bento-grid">
                 <div class="bento-image fade-up">
-                    <img src="https://images.unsplash.com/photo-1625047509248-ec889cbff17f?w=800&q=80" alt="Professional auto electrician working on vehicle wiring and electrical system" loading="lazy">
+                    <img src="/assests/professional-mobile-auto-electrician-geelong.jpg" alt="professional-mobile-auto-electrician-geelong" loading="lazy">
                 </div>
                 <div class="bento-heading fade-up" id="bentoHeading">
                     <span class="section-label">What Sets Us Apart</span>
@@ -2295,6 +2316,73 @@
                 if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
             });
         });
+
+        // Services Carousel
+        (function() {
+            var scroll = document.getElementById('servicesScroll');
+            var dotsContainer = document.getElementById('servicesDots');
+            var prevBtn = document.querySelector('.services-arrow-prev');
+            var nextBtn = document.querySelector('.services-arrow-next');
+            if (!scroll || !dotsContainer) return;
+            var track = scroll.querySelector('.services-scroll-track');
+            var cards = scroll.querySelectorAll('.service-card');
+            if (!cards.length) return;
+
+            var dots = [];
+            for (var i = 0; i < cards.length; i++) {
+                (function(idx) {
+                    var dot = document.createElement('button');
+                    dot.className = 'services-dot';
+                    dot.type = 'button';
+                    dot.setAttribute('aria-label', 'Go to slide ' + (idx + 1));
+                    dot.addEventListener('click', function() { scrollToIndex(idx); });
+                    dotsContainer.appendChild(dot);
+                    dots.push(dot);
+                })(i);
+            }
+
+            function getStep() {
+                var rect = cards[0].getBoundingClientRect();
+                var gap = parseInt(getComputedStyle(track).gap, 10) || 0;
+                return rect.width + gap;
+            }
+
+            function getCurrentIndex() {
+                var step = getStep();
+                if (!step) return 0;
+                return Math.max(0, Math.min(cards.length - 1, Math.round(scroll.scrollLeft / step)));
+            }
+
+            function scrollToIndex(i) {
+                var step = getStep();
+                scroll.scrollTo({ left: step * i, behavior: 'smooth' });
+            }
+
+            var rafId = null;
+            function updateUI() {
+                rafId = null;
+                var idx = getCurrentIndex();
+                for (var d = 0; d < dots.length; d++) {
+                    dots[d].classList.toggle('active', d === idx);
+                }
+                if (prevBtn) prevBtn.disabled = (idx <= 0);
+                if (nextBtn) nextBtn.disabled = (idx >= cards.length - 1);
+            }
+
+            if (prevBtn) prevBtn.addEventListener('click', function() {
+                scrollToIndex(Math.max(0, getCurrentIndex() - 1));
+            });
+            if (nextBtn) nextBtn.addEventListener('click', function() {
+                scrollToIndex(Math.min(cards.length - 1, getCurrentIndex() + 1));
+            });
+
+            scroll.addEventListener('scroll', function() {
+                if (rafId) return;
+                rafId = window.requestAnimationFrame(updateUI);
+            });
+            window.addEventListener('resize', updateUI);
+            updateUI();
+        })();
     </script>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y4M0769Y5Y"></script>
