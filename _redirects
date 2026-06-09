@@ -5,9 +5,9 @@
 /electric-vehicle-repairs/*       /services/electric-vehicle-repairs/:splat       301
 /european-car-tuning-ecu-coding/* /services/european-car-tuning-ecu-coding/:splat 301
 
-/european-car-diagnostics         /services/european-car-diagnostics              301
-/electric-vehicle-repairs         /services/electric-vehicle-repairs              301
-/european-car-tuning-ecu-coding   /services/european-car-tuning-ecu-coding        301
+/european-car-diagnostics         /services/european-car-diagnostics/              301
+/electric-vehicle-repairs         /services/electric-vehicle-repairs/              301
+/european-car-tuning-ecu-coding   /services/european-car-tuning-ecu-coding/        301
 
 /serviceareas/*                   /service-areas/:splat                           301
-/serviceareas                     /service-areas                                  301
+/serviceareas                     /service-areas/                                  301
