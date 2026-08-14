@@ -691,7 +691,7 @@
                     <h2>Tell us what's going on with your car.</h2>
                     <p>Share what you're seeing &mdash; warning lights, no-start, battery drain, anything &mdash; and we'll get back to you with a free quote.</p>
                 </div>
-                <form class="contact-form" action="https://formspree.io/f/xwleqvza" method="POST">
+                <form id="contact-form" class="contact-form" action="https://formspree.io/f/xwleqvza" method="POST">
                     <div class="form-row form-row-split">
                         <div class="form-field">
                             <label class="form-label" for="name">Name<span class="req">*</span></label>
@@ -959,5 +959,58 @@
       gtag('config', 'G-Y4M0769Y5Y');
     </script>
 
+
+    <!-- Contact form: async submit to Formspree; redirect to /thank-you/ only after a confirmed successful submission -->
+    <script>
+      (function () {
+        var form = document.getElementById('contact-form');
+        if (!form) return;
+        var btn = form.querySelector('.form-submit') || form.querySelector('button[type="submit"]');
+        var btnHTML = btn ? btn.innerHTML : '';
+        var errEl = null;
+        var FALLBACK = 'Sorry, something went wrong and your message was not sent. Please try again, or call us on 0406 642 600.';
+        function showError(msg) {
+          if (!errEl) {
+            errEl = document.createElement('p');
+            errEl.className = 'form-error-message';
+            errEl.setAttribute('role', 'alert');
+            errEl.style.cssText = 'margin-top:16px;padding:12px 16px;border-radius:var(--radius,16px);background:#fdecea;color:#b3261e;font-weight:500;text-align:center;';
+            form.appendChild(errEl);
+          }
+          errEl.textContent = msg;
+          errEl.style.display = 'block';
+        }
+        function reset() {
+          form.removeAttribute('data-submitting');
+          if (btn) { btn.disabled = false; btn.innerHTML = btnHTML; }
+        }
+        form.addEventListener('submit', function (e) {
+          e.preventDefault();
+          if (form.getAttribute('data-submitting') === '1') return;
+          form.setAttribute('data-submitting', '1');
+          if (errEl) { errEl.style.display = 'none'; }
+          if (btn) { btn.disabled = true; btn.innerHTML = 'Sending…'; }
+          fetch(form.action, {
+            method: 'POST',
+            body: new FormData(form),
+            headers: { 'Accept': 'application/json' }
+          }).then(function (response) {
+            if (response.ok) {
+              window.location.href = '/thank-you/';
+            } else {
+              response.json().then(function (data) {
+                var msg = (data && Array.isArray(data.errors) && data.errors.length)
+                  ? data.errors.map(function (x) { return x.message; }).join(' ')
+                  : FALLBACK;
+                showError(msg);
+              }).catch(function () { showError(FALLBACK); }).then(reset);
+            }
+          }).catch(function () {
+            showError('Network error — your message was not sent. Please check your connection and try again, or call us on 0406 642 600.');
+            reset();
+          });
+        });
+      })();
+    </script>
 </body>
 </html>
