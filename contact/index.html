@@ -950,13 +950,22 @@
     })();
     </script>
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y4M0769Y5Y"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
 
-      gtag('config', 'G-Y4M0769Y5Y');
+      // GA4 and Google Ads load on the production host only, so preview and
+      // local builds issue no measurement requests.
+      if (window.location.hostname === 'www.sanicar.com.au') {
+        var gtagLoader = document.createElement('script');
+        gtagLoader.async = true;
+        gtagLoader.src = 'https://www.googletagmanager.com/gtag/js?id=G-Y4M0769Y5Y';
+        document.head.appendChild(gtagLoader);
+
+        gtag('js', new Date());
+        gtag('config', 'G-Y4M0769Y5Y');
+        gtag('config', 'AW-16943001661');
+      }
     </script>
 
 
@@ -996,7 +1005,29 @@
             headers: { 'Accept': 'application/json' }
           }).then(function (response) {
             if (response.ok) {
-              window.location.href = '/thank-you/';
+              // Conversions fire only after a confirmed successful submission.
+              var redirected = false;
+              var goToThankYou = function () {
+                if (redirected) return;
+                redirected = true;
+                window.location.href = '/thank-you/';
+              };
+
+              gtag('event', 'generate_lead', {
+                send_to: 'G-Y4M0769Y5Y',
+                value: 1.0,
+                currency: 'AUD'
+              });
+              gtag('event', 'conversion', {
+                send_to: 'AW-16943001661/5nlZCPqlmuYcEL3gho8_',
+                value: 1.0,
+                currency: 'AUD',
+                event_callback: goToThankYou
+              });
+
+              // Redirect even if the callback never arrives (tag blocked, or
+              // not loaded outside the production host).
+              window.setTimeout(goToThankYou, 1200);
             } else {
               response.json().then(function (data) {
                 var msg = (data && Array.isArray(data.errors) && data.errors.length)

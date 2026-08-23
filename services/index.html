@@ -2002,13 +2002,22 @@
         document.querySelectorAll('.fade-up').forEach(function(el) { observer.observe(el); });
     </script>
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y4M0769Y5Y"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
 
-      gtag('config', 'G-Y4M0769Y5Y');
+      // GA4 and Google Ads load on the production host only, so preview and
+      // local builds issue no measurement requests.
+      if (window.location.hostname === 'www.sanicar.com.au') {
+        var gtagLoader = document.createElement('script');
+        gtagLoader.async = true;
+        gtagLoader.src = 'https://www.googletagmanager.com/gtag/js?id=G-Y4M0769Y5Y';
+        document.head.appendChild(gtagLoader);
+
+        gtag('js', new Date());
+        gtag('config', 'G-Y4M0769Y5Y');
+        gtag('config', 'AW-16943001661');
+      }
     </script>
 
 </body>

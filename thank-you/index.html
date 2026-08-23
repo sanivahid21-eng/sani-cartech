@@ -7,7 +7,7 @@
     <link rel="apple-touch-icon" href="/assests/Sanicar-logo.png">
     <title>Thank You — SaniCar Tech | Mobile Auto Electrician Geelong</title>
     <meta name="description" content="Get in touch with SaniCar Tech for expert auto electrical diagnostics, warning light troubleshooting, ECU coding, and mobile repairs in Geelong.">
-    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="robots" content="noindex, follow">
     <link rel="canonical" href="https://www.sanicar.com.au/thank-you/">
     <meta name="author" content="SaniCar Tech">
     <meta property="og:title" content="Contact SaniCar Tech | Mobile Auto Electrician Geelong">
@@ -766,13 +766,22 @@
 
     <!-- Vehicle Make / Model / Year dropdowns -->
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y4M0769Y5Y"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
 
-      gtag('config', 'G-Y4M0769Y5Y');
+      // GA4 and Google Ads load on the production host only, so preview and
+      // local builds issue no measurement requests.
+      if (window.location.hostname === 'www.sanicar.com.au') {
+        var gtagLoader = document.createElement('script');
+        gtagLoader.async = true;
+        gtagLoader.src = 'https://www.googletagmanager.com/gtag/js?id=G-Y4M0769Y5Y';
+        document.head.appendChild(gtagLoader);
+
+        gtag('js', new Date());
+        gtag('config', 'G-Y4M0769Y5Y');
+        gtag('config', 'AW-16943001661');
+      }
     </script>
 
 </body>
