@@ -547,6 +547,27 @@
         .breadcrumbs a:hover { color: #1a1a2e; opacity: 1; }
         .breadcrumbs li:last-child { color: #1a1a2e; font-weight: 600; }
         @media (max-width: 640px) { .breadcrumbs { font-size: 0.8rem; padding: 10px 0; } .breadcrumbs li + li::before { margin: 0 6px; } }
+
+        /* Mobile navigation drawer */
+        .mobile-menu { display: none; position: fixed; inset: 0; background: var(--cream, #f5f0ea); z-index: 9999; padding: 20px 24px; flex-direction: column; }
+        .mobile-menu.active { display: flex; }
+        .mobile-menu-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px; }
+        .mobile-menu-close { background: none; border: none; cursor: pointer; padding: 8px; color: var(--navy, #1a1a2e); }
+        .mobile-menu-close svg, .mobile-menu-close i { width: 26px; height: 26px; }
+        .mobile-menu-links { display: flex; flex-direction: column; gap: 4px; }
+        .mobile-menu-links a { font-family: var(--font-display, 'Bricolage Grotesque', sans-serif); font-size: 1.6rem; font-weight: 800; color: var(--navy, #1a1a2e); padding: 10px 0; border-bottom: 1px solid rgba(0,0,0,0.06); }
+        .mobile-menu-cta { margin-top: auto; display: flex; flex-direction: column; gap: 12px; }
+        .mobile-menu-cta a { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 16px; border-radius: 100px; font-weight: 700; font-size: 1rem; }
+        .mob-btn-primary { background: var(--navy, #1a1a2e); color: var(--white, #fff); }
+        .mob-btn-secondary { background: var(--accent-bg, var(--accent, #1e3a8a)); color: var(--white, #fff); }
+
+        /* Hide the toggle wherever the desktop nav is visible */
+        @media (min-width: 1261px) { .mobile-toggle { display: none; } }
+
+        .mobile-toggle .nav-icon, .mobile-menu-close .nav-icon { width: 26px; height: 26px; display: block; }
+
+        /* Toggle appearance reset (button defaults would otherwise show a border/background) */
+        .mobile-toggle { background: none; border: none; cursor: pointer; padding: 8px; color: var(--navy, #1a1a2e); }
     </style>
 </head>
 <body>
@@ -586,8 +607,40 @@
                 <a href="/contact/">Contact</a>
             </div>
             <a href="/contact/" class="nav-cta">Get a Free Quote</a>
+        <button class="mobile-toggle" type="button" onclick="toggleMobileMenu()"
+                    aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+                <svg class="nav-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+            </button>
         </div>
     </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Site menu">
+        <div class="mobile-menu-header">
+            <a href="/" class="nav-logo">
+                <img src="/assests/Sanicar-logo.png" alt="Sanicar Tech" class="logo-img">
+            </a>
+            <button class="mobile-menu-close" type="button" onclick="toggleMobileMenu()" aria-label="Close menu">
+                <svg class="nav-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+            </button>
+        </div>
+        <div class="mobile-menu-links">
+            <a href="/" onclick="toggleMobileMenu()">Home</a>
+            <a href="/services/" onclick="toggleMobileMenu()">Services</a>
+            <a href="/services/european-car-diagnostics/" onclick="toggleMobileMenu()">European Specialist</a>
+            <a href="/service-areas/" onclick="toggleMobileMenu()">Service Areas</a>
+            <a href="/#why-us" onclick="toggleMobileMenu()">About</a>
+            <a href="/contact/" onclick="toggleMobileMenu()">Contact</a>
+        </div>
+        <div class="mobile-menu-cta">
+            <a href="tel:+61406642600" class="mob-btn-primary">
+                <i data-lucide="phone" style="width:18px;height:18px;"></i> Call Now
+            </a>
+            <a href="/contact/" class="mob-btn-secondary" onclick="toggleMobileMenu()">
+                <i data-lucide="calendar" style="width:18px;height:18px;"></i> Book Online
+            </a>
+        </div>
+    </div>
 
     <nav class="breadcrumbs" aria-label="Breadcrumb">
         <div class="container">
@@ -827,5 +880,98 @@
       }
     </script>
 
+
+    <script>
+        /* Mobile navigation — single accessible implementation.
+           Exposed as window.toggleMobileMenu so existing inline handlers keep working. */
+        (function () {
+            var menu = document.getElementById('mobileMenu');
+            var toggle = document.querySelector('.mobile-toggle');
+            if (!menu) return;
+            var desktop = window.matchMedia('(min-width: 1261px)');
+            var inerted = [];
+
+            function focusables() {
+                return Array.prototype.filter.call(
+                    menu.querySelectorAll('a[href], button:not([disabled])'),
+                    function (el) { return el.offsetWidth > 0 || el.offsetHeight > 0; }
+                );
+            }
+
+            /* While the drawer is open the rest of the page is obscured, so make it
+               genuinely unreachable rather than merely hidden behind the overlay. */
+            function setOutsideInert(on) {
+                if (on) {
+                    inerted = [];
+                    var kids = document.body.children;
+                    for (var i = 0; i < kids.length; i++) {
+                        var el = kids[i];
+                        if (el === menu || el.tagName === 'SCRIPT' || el.hasAttribute('inert')) continue;
+                        el.setAttribute('inert', '');
+                        var owned = !el.hasAttribute('aria-hidden');
+                        if (owned) el.setAttribute('aria-hidden', 'true');
+                        inerted.push([el, owned]);
+                    }
+                } else {
+                    for (var j = 0; j < inerted.length; j++) {
+                        inerted[j][0].removeAttribute('inert');
+                        if (inerted[j][1]) inerted[j][0].removeAttribute('aria-hidden');
+                    }
+                    inerted = [];
+                }
+            }
+
+            function isOpen() { return menu.classList.contains('active'); }
+
+            function setFlags(open) {
+                menu.classList.toggle('active', open);
+                document.body.style.overflow = open ? 'hidden' : '';
+                if (toggle) {
+                    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+                    toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+                }
+            }
+
+            function close(restoreFocus) {
+                var inside = document.activeElement && menu.contains(document.activeElement);
+                setFlags(false);
+                setOutsideInert(false);
+                if (restoreFocus && toggle && toggle.offsetParent !== null) {
+                    toggle.focus();
+                } else if (inside && document.activeElement && document.activeElement.blur) {
+                    document.activeElement.blur();
+                }
+            }
+
+            window.toggleMobileMenu = function () {
+                if (isOpen()) { close(true); return; }
+                setFlags(true);
+                setOutsideInert(true);
+                var c = menu.querySelector('.mobile-menu-close');
+                if (c) c.focus();
+            };
+
+            document.addEventListener('keydown', function (e) {
+                if (!isOpen()) return;
+                if (e.key === 'Escape' || e.key === 'Esc') { e.preventDefault(); close(true); return; }
+                if (e.key !== 'Tab') return;
+                var f = focusables();
+                if (!f.length) return;
+                var first = f[0], last = f[f.length - 1];
+                if (!menu.contains(document.activeElement)) { e.preventDefault(); first.focus(); }
+                else if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+                else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+            });
+
+            /* Crossing up to the desktop breakpoint hides the toggle, so never leave
+               the drawer open or focus stranded on a control that is no longer shown. */
+            function onDesktop() { if (isOpen() && desktop.matches) close(false); }
+            if (desktop.addEventListener) desktop.addEventListener('change', onDesktop);
+            else if (desktop.addListener) desktop.addListener(onDesktop);
+            window.addEventListener('resize', onDesktop);
+
+            setFlags(false);
+        })();
+    </script>
 </body>
 </html>
