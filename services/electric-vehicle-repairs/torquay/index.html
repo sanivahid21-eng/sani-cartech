@@ -25,7 +25,7 @@
 
     <!-- Structured Data: Service -->
     <script type="application/ld+json">
-    {"@context":"https://schema.org","@graph":[{"@type":"Service","@id":"https://www.sanicar.com.au/services/electric-vehicle-repairs/torquay#service","name":"Electric Vehicle Specialist Torquay","url":"https://www.sanicar.com.au/services/electric-vehicle-repairs/torquay/","description":"Mobile EV and hybrid diagnostics in Torquay including battery, charging, and high-voltage system testing.","provider":{"@id":"https://www.sanicar.com.au/#business"},"areaServed":["Torquay","Geelong"],"serviceType":"EV and hybrid vehicle diagnostics"}]}
+    {"@context":"https://schema.org","@graph":[{"@type":"Service","@id":"https://www.sanicar.com.au/services/electric-vehicle-repairs/torquay#service","name":"Electric Vehicle Specialist Torquay","url":"https://www.sanicar.com.au/services/electric-vehicle-repairs/torquay/","description":"Mobile hybrid and EV electrical diagnostics in Torquay, including battery module balancing and circuit-board fault diagnosis. Suitability is confirmed per vehicle and fault.","provider":{"@id":"https://www.sanicar.com.au/#business"},"areaServed":["Torquay","Geelong"],"serviceType":"EV and hybrid vehicle diagnostics"}]}
     </script>
 
     <!-- Structured Data: BreadcrumbList -->
@@ -35,7 +35,7 @@
 
     <!-- Structured Data: FAQPage -->
     <script type="application/ld+json">
-    {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Can you service a Tesla independently in Torquay without voiding warranty?","acceptedAnswer":{"@type":"Answer","text":"Yes — under Australian Consumer Law, an independent EV-capable service operator can perform service work without affecting warranty, provided OEM-equivalent parts and procedures are used. Software-related faults still need to go through Tesla."}},{"@type":"Question","name":"How do you check EV battery health?","acceptedAnswer":{"@type":"Answer","text":"EV battery health is measured as State of Health (SOH) — the current usable capacity as a percentage of original design capacity. We capture this via the vehicle’s battery management system, plus check for cell balance and any thermal events in the fault history."}},{"@type":"Question","name":"What’s the hybrid battery replacement cost vs repair?","acceptedAnswer":{"@type":"Answer","text":"Hybrid battery replacement cost ranges $4,000–$8,000 depending on vehicle. Module-level repair is typically $1,200–$3,200 — often the better-value path, especially on Toyota and Lexus packs where individual modules can be swapped without replacing the whole pack."}},{"@type":"Question","name":"Why isn’t my EV charging at full speed?","acceptedAnswer":{"@type":"Answer","text":"Reduced charge speed has several causes: cold battery (thermal management), reduced charge cable performance, charge port contamination, contactor wear, or onboard charger faults. Diagnostics isolate which one without replacing parts unnecessarily."}},{"@type":"Question","name":"Do I need a hybrid mechanic in Torquay for routine servicing?","acceptedAnswer":{"@type":"Answer","text":"Not necessarily for routine items (oil changes, brake pads, cabin filters) — any competent mobile mechanic can do those. For hybrid system warnings, battery health checks, or anything HV-related, you do want a mobile operator with the right tooling and HV training."}},{"@type":"Question","name":"Can you repair a hybrid showing ‘check hybrid system’?","acceptedAnswer":{"@type":"Answer","text":"Almost always, yes. That warning is usually a hybrid battery module fault or inverter issue. Proper diagnostics first isolate the actual cause, then quote the module-level repair — usually the cost-effective path versus full-pack replacement."}}]}
+    {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why isn’t my EV charging at full speed?","acceptedAnswer":{"@type":"Answer","text":"Reduced charge speed has several causes: cold battery (thermal management), reduced charge cable performance, charge port contamination, contactor wear, or onboard charger faults. Diagnostics isolate which one without replacing parts unnecessarily."}},{"@type":"Question","name":"Do I need a hybrid mechanic in Torquay for routine servicing?","acceptedAnswer":{"@type":"Answer","text":"Not necessarily for routine items (oil changes, brake pads, cabin filters) — any competent mobile mechanic can do those. For hybrid system warnings or electrical faults, you do want an operator with the right diagnostic tooling for those systems."}},{"@type":"Question","name":"Can you repair a hybrid showing ‘check hybrid system’?","acceptedAnswer":{"@type":"Answer","text":"A hybrid-system warning can have several causes. Fault-code scanning and appropriate electrical checks help determine the next diagnostic step. Depending on the findings, battery module balancing or further circuit-board diagnosis may be appropriate. We confirm suitability, work location and cost before proceeding."}},{"@type":"Question","name":"Do you offer battery module balancing and circuit-board diagnosis?","acceptedAnswer":{"@type":"Answer","text":"Yes — we have carried out battery module balancing and circuit-board fault diagnosis on hybrid and EV vehicles. Whether it suits your vehicle depends on the model, the battery type and the fault, so send us your vehicle details and symptoms first and we will confirm. Not all of this work can be completed at the roadside; we confirm the work location, requirements and cost when we quote."}},{"@type":"Question","name":"How much does a diagnostic call-out to Torquay cost?","acceptedAnswer":{"@type":"Answer","text":"My diagnostic call-out fee is $150, and that includes on-site troubleshooting and testing. That fee covers the diagnostic call-out only. Battery module and circuit-board work is quoted separately once the fault is confirmed, and we confirm the work location and requirements at that point."}}]}
     </script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -528,6 +528,10 @@
             font-family: var(--font-display); font-weight: 800;
             font-size: clamp(2rem, 3.5vw, 2.6rem);
             color: var(--navy); line-height: 1.15;
+        }
+        .brands-header p {
+            font-size: 1rem; color: var(--gray); line-height: 1.7;
+            margin-top: 14px;
         }
         .brands-grid {
             display: grid;
@@ -1124,7 +1128,7 @@
                 <i data-lucide="chevron-left"></i> EV &amp; Hybrid
             </a>
             <h1>EV &amp; <span class="ev-accent">Hybrid Specialist</span> in Torquay</h1>
-            <p class="svc-hero-desc">Mobile <strong>EV repair specialist in Torquay</strong> for <strong>Tesla, BYD, Polestar and hybrid vehicles</strong>. Fully mobile <strong>high-voltage diagnostics, battery health analysis, regenerative braking</strong>, and systems generic mobile operators can&rsquo;t touch &mdash; we come to you.</p>
+            <p class="svc-hero-desc"><strong>Hybrid and EV electrical diagnostics, battery module balancing and circuit-board fault diagnosis.</strong> Contact us with your vehicle details and symptoms so we can confirm suitability.</p>
             <div class="svc-hero-ctas">
                 <a href="/contact/" class="hero-btn-primary">
                     <i data-lucide="battery-charging"></i> Book EV Diagnostics
@@ -1167,7 +1171,7 @@
                 <a href="/services/european-car-diagnostics/torquay/" class="related-card fade-up">
                     <div class="related-card-icon"><i data-lucide="cpu"></i></div>
                     <h3>European Car Diagnostics</h3>
-                    <p>BMW, Mercedes-Benz, Audi, Volkswagen, Porsche, Mini, Skoda, Volvo. Dealer-level ISTA/XENTRY/ODIS tooling and proper coding capability.</p>
+                    <p>BMW, Mercedes-Benz, Audi, Volkswagen, Porsche, Mini, Skoda, Volvo. ISTA and XENTRY tooling and proper coding capability.</p>
                     <span class="related-card-link">European specialist <i data-lucide="arrow-right"></i></span>
                 </a>
             </div>
@@ -1181,7 +1185,7 @@
             <div class="trusted-grid">
                 <div class="trusted-body fade-up">
                     <h2>Electric is different. The diagnostics are too.</h2>
-                    <p>Torquay sits at the start of the Great Ocean Road &mdash; with a Surf Coast lifestyle fleet that now includes a growing share of <strong>Tesla, BYD, Polestar, and Toyota/Lexus hybrids</strong> alongside the weekender European cars and family SUVs. As an independent <strong>vehicle electrical specialist</strong> certified for high-voltage work, our mobile service covers EV battery diagnostics, hybrid battery repair, and HV-system isolation &mdash; all carried on-board. Written quotes before any HV work begins.</p>
+                    <p>Torquay sits at the start of the Great Ocean Road &mdash; with a Surf Coast lifestyle fleet that now includes a growing share of <strong>Tesla, BYD, Polestar, and Toyota/Lexus hybrids</strong> alongside the weekender European cars and family SUVs. As an independent <strong>vehicle electrical specialist</strong>, our mobile service covers EV and hybrid vehicle electrical diagnostics and fault-code checks at your vehicle. Written quotes before any work begins.</p>
                 </div>
                 <div class="trusted-card fade-up">
                     <h3>We work on</h3>
@@ -1190,7 +1194,6 @@
                         <li><i data-lucide="zap"></i> Hybrid powertrains</li>
                         <li><i data-lucide="plug"></i> Charging systems</li>
                         <li><i data-lucide="circuit-board"></i> Electric drivetrains</li>
-                        <li><i data-lucide="rotate-ccw"></i> Regenerative braking systems</li>
                         <li><i data-lucide="cable"></i> Vehicle electrical systems</li>
                     </ul>
                 </div>
@@ -1221,28 +1224,13 @@
 
                 <div class="ev-card fade-up">
                     <div class="ev-card-icon"><i data-lucide="wrench"></i></div>
-                    <h3>Hybrid Servicing</h3>
-                    <p>Routine <strong>hybrid servicing</strong> helps <strong>prevent breakdowns, maintain fuel efficiency</strong>, and extend the life of your vehicle&rsquo;s battery and electrical systems. If you&rsquo;re looking for a <strong>hybrid car mechanic in Geelong</strong>, our workshop provides <strong>thorough inspections and preventative maintenance</strong> to keep your hybrid running smoothly and reliably.</p>
+                    <h3>Battery Module &amp; Circuit-Board Work</h3>
+                    <p>We have carried out <strong>battery module balancing</strong> and <strong>circuit-board fault diagnosis</strong> on hybrid and EV vehicles. Suitability depends on the vehicle and the fault, so send us the details and symptoms and we will confirm. Work location and requirements are confirmed when we quote.</p>
                     <div class="includes-label">Includes</div>
                     <ul class="includes-list">
-                        <li>Hybrid system checks</li>
-                        <li>Battery cooling inspection</li>
-                        <li>Regenerative braking check</li>
-                        <li>Preventative maintenance</li>
-                    </ul>
-                </div>
-
-                <div class="ev-card fade-up">
-                    <div class="ev-card-icon"><i data-lucide="battery-charging"></i></div>
-                    <h3>Hybrid Battery Repair &amp; Replacement</h3>
-                    <p>We provide <strong>professional testing, repair, and replacement solutions</strong> based on battery condition and performance analysis.</p>
-                    <p><strong>Hybrid battery issues</strong> are carefully assessed before recommending any solution, helping customers understand the <strong>hybrid battery repair cost</strong> before work begins.</p>
-                    <div class="includes-label">Includes</div>
-                    <ul class="includes-list">
-                        <li>Battery performance testing</li>
-                        <li>Module balancing</li>
-                        <li>Battery repair &amp; conditioning</li>
-                        <li>Replacement options (genuine/refurbished)</li>
+                        <li>Battery module balancing</li>
+                        <li>Circuit-board fault diagnosis</li>
+                        <li>Written quote before work begins</li>
                     </ul>
                 </div>
 
@@ -1250,7 +1238,7 @@
                     <div class="ev-card-icon"><i data-lucide="zap"></i></div>
                     <h3>Vehicle Electrical Repairs</h3>
                     <p>Modern EV and hybrid vehicles can develop electrical issues that affect <strong>charging, performance, or drivability</strong>, often showing up as <strong>warning lights or sudden power loss</strong>. If you&rsquo;re looking for a <strong>hybrid car repair in Geelong</strong>, we provide <strong>fast, accurate fault diagnosis and targeted repairs</strong> to get you safely back on the road with confidence.</p>
-                    <p>In addition, we assist with <a href="/services/car-repair/">car suspension repair service</a> needs where <strong>electronic or sensor-related faults</strong> impact <strong>ride stability or handling performance</strong>.</p>
+                    <p>In addition, we provide <a href="/services/car-repair/">auto electrical fault finding and repairs</a> where <strong>electronic or sensor-related faults</strong> affect <strong>ride stability or handling performance</strong>.</p>
                     <div class="includes-label">Includes</div>
                     <ul class="includes-list">
                         <li>Wiring issues</li>
@@ -1267,9 +1255,8 @@
     <section class="costs">
         <div class="container">
             <div class="costs-header fade-up">
-                <h2>EV &amp; Hybrid Repair Costs in Geelong</h2>
+                <h2>EV &amp; Hybrid Diagnostic Costs in Torquay</h2>
                 <p>Repair costs depend on <strong>vehicle type, battery condition, and fault severity</strong>. A diagnostic check is required before any accurate pricing.</p>
-                <p>One of the most common concerns we help customers with is understanding the <strong>hybrid battery replacement cost</strong>, which varies based on vehicle model and battery condition.</p>
             </div>
             <div class="costs-table fade-up">
                 <table>
@@ -1283,14 +1270,6 @@
                         <tr>
                             <td>EV Diagnostics</td>
                             <td>Warning lights, charging issues, system faults</td>
-                        </tr>
-                        <tr>
-                            <td>Hybrid Battery Repair</td>
-                            <td>Reduced performance, imbalance</td>
-                        </tr>
-                        <tr>
-                            <td>Hybrid Battery Replacement</td>
-                            <td>Battery failure or severe degradation</td>
                         </tr>
                         <tr>
                             <td>Electrical Repairs</td>
@@ -1339,8 +1318,8 @@
                 </div>
                 <div class="process-step fade-up">
                     <div class="step-num">02</div>
-                    <h3>Battery Testing</h3>
-                    <p>Battery health, voltage balance, and performance check.</p>
+                    <h3>Battery &amp; Module Testing</h3>
+                    <p>Electrical, fault-code and module-level checks.</p>
                 </div>
                 <div class="process-step fade-up">
                     <div class="step-num">03</div>
@@ -1381,7 +1360,7 @@
                 </div>
                 <div class="why-card fade-up">
                     <div class="why-card-icon"><i data-lucide="shield-check"></i></div>
-                    <div class="why-card-text">High-voltage safety trained</div>
+                    <div class="why-card-text">EV and hybrid system diagnostics</div>
                 </div>
                 <div class="why-card fade-up">
                     <div class="why-card-icon"><i data-lucide="zap"></i></div>
@@ -1401,7 +1380,7 @@
                 <div class="coverage-head fade-up">
                     <span class="section-label">Service area</span>
                     <h2>Torquay &amp; surrounding suburbs</h2>
-                    <p>Fully mobile across the <strong>Surf Coast Shire</strong> &mdash; we come to your driveway, workplace, or roadside. Typical arrival in Torquay around <strong>25 minutes</strong>. HV-certified isolation, battery SOH analysis and most module-level work happen entirely on-site.</p>
+                    <p>We travel from <strong>Armstrong Creek</strong> across the Surf Coast Shire &mdash; your driveway, workplace or roadside. EV and hybrid vehicle electrical diagnostics are carried out at the vehicle where the job allows.</p>
                 </div>
                 <div class="coverage-list fade-up">
                     <div class="coverage-list-label">Suburbs we cover</div>
@@ -1421,6 +1400,7 @@
         <div class="container">
             <div class="brands-header fade-up">
                 <h2>EV &amp; Hybrid Brands We Service</h2>
+                <p>Coverage varies by model, system and fault &mdash; not every vehicle or battery type can be supported. Send us your vehicle details and the symptoms and we will confirm suitability before booking.</p>
             </div>
             <div class="brands-grid">
                 <div class="brand-chip"><span class="brand-chip-badge">TS</span><span class="brand-chip-name">Tesla</span></div>
@@ -1444,27 +1424,6 @@
             <div class="faq-list">
                 <div class="faq-item">
                     <div class="faq-question" onclick="toggleFaq(this)">
-                        Can you service a Tesla independently in Torquay without voiding warranty?
-                        <div class="faq-plus"><i data-lucide="plus"></i></div>
-                    </div>
-                    <div class="faq-answer"><div class="faq-answer-inner">Yes &mdash; under Australian Consumer Law, an independent EV-capable service operator can perform service work without affecting warranty, provided OEM-equivalent parts and procedures are used. Software-related faults still need to go through Tesla.</div></div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question" onclick="toggleFaq(this)">
-                        How do you check EV battery health?
-                        <div class="faq-plus"><i data-lucide="plus"></i></div>
-                    </div>
-                    <div class="faq-answer"><div class="faq-answer-inner">EV battery health is measured as State of Health (SOH) &mdash; the current usable capacity as a percentage of original design capacity. We capture this via the vehicle&rsquo;s battery management system, plus check for cell balance and any thermal events in the fault history.</div></div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question" onclick="toggleFaq(this)">
-                        What&rsquo;s the hybrid battery replacement cost vs repair?
-                        <div class="faq-plus"><i data-lucide="plus"></i></div>
-                    </div>
-                    <div class="faq-answer"><div class="faq-answer-inner">Hybrid battery replacement cost ranges $4,000&ndash;$8,000 depending on vehicle. Module-level repair is typically $1,200&ndash;$3,200 &mdash; often the better-value path, especially on Toyota and Lexus packs where individual modules can be swapped without replacing the whole pack.</div></div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question" onclick="toggleFaq(this)">
                         Why isn&rsquo;t my EV charging at full speed?
                         <div class="faq-plus"><i data-lucide="plus"></i></div>
                     </div>
@@ -1475,14 +1434,28 @@
                         Do I need a hybrid mechanic in Torquay for routine servicing?
                         <div class="faq-plus"><i data-lucide="plus"></i></div>
                     </div>
-                    <div class="faq-answer"><div class="faq-answer-inner">Not necessarily for routine items (oil changes, brake pads, cabin filters) &mdash; any competent mobile mechanic can do those. For hybrid system warnings, battery health checks, or anything HV-related, you do want a mobile operator with the right tooling and HV training.</div></div>
+                    <div class="faq-answer"><div class="faq-answer-inner">Not necessarily for routine items (oil changes, brake pads, cabin filters) &mdash; any competent mobile mechanic can do those. For hybrid system warnings or electrical faults, you do want an operator with the right diagnostic tooling for those systems.</div></div>
                 </div>
                 <div class="faq-item">
                     <div class="faq-question" onclick="toggleFaq(this)">
                         Can you repair a hybrid showing &lsquo;check hybrid system&rsquo;?
                         <div class="faq-plus"><i data-lucide="plus"></i></div>
                     </div>
-                    <div class="faq-answer"><div class="faq-answer-inner">Almost always, yes. That warning is usually a hybrid battery module fault or inverter issue. Proper diagnostics first isolate the actual cause, then quote the module-level repair &mdash; usually the cost-effective path versus full-pack replacement.</div></div>
+                    <div class="faq-answer"><div class="faq-answer-inner">A hybrid-system warning can have several causes. Fault-code scanning and appropriate electrical checks help determine the next diagnostic step. Depending on the findings, battery module balancing or further circuit-board diagnosis may be appropriate. We confirm suitability, work location and cost before proceeding.</div></div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        Do you offer battery module balancing and circuit-board diagnosis?
+                        <div class="faq-plus"><i data-lucide="plus"></i></div>
+                    </div>
+                    <div class="faq-answer"><div class="faq-answer-inner">Yes &mdash; we have carried out battery module balancing and circuit-board fault diagnosis on hybrid and EV vehicles. Whether it suits your vehicle depends on the model, the battery type and the fault, so send us your vehicle details and symptoms first and we will confirm. Not all of this work can be completed at the roadside; we confirm the work location, requirements and cost when we quote.</div></div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        How much does a diagnostic call-out to Torquay cost?
+                        <div class="faq-plus"><i data-lucide="plus"></i></div>
+                    </div>
+                    <div class="faq-answer"><div class="faq-answer-inner">My diagnostic call-out fee is $150, and that includes on-site troubleshooting and testing. That fee covers the diagnostic call-out only. Battery module and circuit-board work is quoted separately once the fault is confirmed, and we confirm the work location and requirements at that point.</div></div>
                 </div>
             </div>
         </div>
@@ -1492,14 +1465,13 @@
     <div class="svc-cta" id="contact">
         <div class="svc-cta-text">
             <h2>Book EV &amp; Hybrid Diagnostics in Torquay</h2>
-            <p>Get <strong>accurate fault identification</strong> for your Tesla, BYD, Polestar or hybrid vehicle from <strong>HV-certified technicians</strong> using <strong>advanced diagnostic equipment</strong> &mdash; at your Torquay driveway.</p>
+            <p>Get <strong>accurate fault identification</strong> for your Tesla, BYD, Polestar or hybrid vehicle using <strong>EV and hybrid diagnostic equipment</strong> &mdash; at your Torquay driveway.</p>
             <a href="/contact/" class="svc-cta-btn">
                 Book EV Diagnostics <i data-lucide="arrow-right"></i>
             </a>
             <div class="svc-cta-checks">
-                <div class="check-item"><i data-lucide="circle-check"></i> HV-certified hybrid technicians</div>
+                <div class="check-item"><i data-lucide="circle-check"></i> EV and hybrid diagnostics</div>
                 <div class="check-item"><i data-lucide="circle-check"></i> Mobile to Torquay &amp; surrounds</div>
-                <div class="check-item"><i data-lucide="circle-check"></i> Module-level repair where possible</div>
             </div>
         </div>
         <div class="svc-cta-img">
