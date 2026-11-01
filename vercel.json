@@ -1,0 +1,50 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
+    { "source": "/european-car-diagnostics", "destination": "/services/european-car-diagnostics/", "permanent": true },
+    { "source": "/european-car-diagnostics/:path*", "destination": "/services/european-car-diagnostics/:path*", "permanent": true },
+    { "source": "/electric-vehicle-repairs", "destination": "/services/electric-vehicle-repairs/", "permanent": true },
+    { "source": "/electric-vehicle-repairs/:path*", "destination": "/services/electric-vehicle-repairs/:path*", "permanent": true },
+    { "source": "/european-car-tuning-ecu-coding", "destination": "/services/european-car-tuning-ecu-coding/", "permanent": true },
+    { "source": "/european-car-tuning-ecu-coding/:path*", "destination": "/services/european-car-tuning-ecu-coding/:path*", "permanent": true },
+    { "source": "/serviceareas", "destination": "/service-areas/", "permanent": true },
+    { "source": "/serviceareas/", "destination": "/service-areas/", "permanent": true },
+
+    { "source": "/services.html", "destination": "/services/", "permanent": true },
+    { "source": "/areas.html", "destination": "/service-areas/", "permanent": true },
+    { "source": "/blog.html", "destination": "/blogs/", "permanent": true },
+    { "source": "/blog-ecu-coding-explained.html", "destination": "/blogs/ecu-coding-guide/", "permanent": true },
+
+    { "source": "/service-car-electrical-diagnostics.html", "destination": "/services/car-diagnostics/", "permanent": true },
+    { "source": "/service-car-repair.html", "destination": "/services/car-repair/", "permanent": true },
+    { "source": "/service-ev-hybrid.html", "destination": "/services/electric-vehicle-repairs/", "permanent": true },
+    { "source": "/service-ecu-coding-programming.html", "destination": "/services/european-car-tuning-ecu-coding/", "permanent": true },
+    { "source": "/mbcod.html", "destination": "/services/european-car-diagnostics/", "permanent": true },
+
+    { "source": "/car-electrical-diagnostics-armstrong-creek.html", "destination": "/services/car-diagnostics/armstrong-creek/", "permanent": true },
+    { "source": "/car-electrical-diagnostics-ocean-grove.html", "destination": "/services/car-diagnostics/ocean-grove/", "permanent": true },
+    { "source": "/car-electrical-diagnostics-torquay.html", "destination": "/services/car-diagnostics/torquay/", "permanent": true },
+    { "source": "/car-electrical-diagnostics-waurn-ponds.html", "destination": "/services/car-diagnostics/waurn-ponds/", "permanent": true },
+
+    { "source": "/car-repair-services-armstrong-creek.html", "destination": "/services/car-repair/armstrong-creek/", "permanent": true },
+    { "source": "/car-repair-services-ocean-grove.html", "destination": "/services/car-repair/ocean-grove/", "permanent": true },
+    { "source": "/car-repair-services-torquay.html", "destination": "/services/car-repair/torquay/", "permanent": true },
+    { "source": "/car-repair-services-waurn-ponds.html", "destination": "/services/car-repair/waurn-ponds/", "permanent": true },
+
+    { "source": "/electric-vehicle-specialist-armstrong-creek.html", "destination": "/services/electric-vehicle-repairs/armstrong-creek/", "permanent": true },
+    { "source": "/electric-vehicle-specialist-ocean-grove.html", "destination": "/services/electric-vehicle-repairs/ocean-grove/", "permanent": true },
+    { "source": "/electric-vehicle-specialist-torquay.html", "destination": "/services/electric-vehicle-repairs/torquay/", "permanent": true },
+    { "source": "/electric-vehicle-specialist-waurn-ponds.html", "destination": "/services/electric-vehicle-repairs/waurn-ponds/", "permanent": true },
+
+    { "source": "/european-car-diagnostics-armstrong-creek.html", "destination": "/services/european-car-diagnostics/armstrong-creek/", "permanent": true },
+    { "source": "/european-car-diagnostics-ocean-grove.html", "destination": "/services/european-car-diagnostics/ocean-grove/", "permanent": true },
+    { "source": "/european-car-diagnostics-torquay.html", "destination": "/services/european-car-diagnostics/torquay/", "permanent": true },
+    { "source": "/european-car-diagnostics-waurn-ponds.html", "destination": "/services/european-car-diagnostics/waurn-ponds/", "permanent": true },
+
+    { "source": "/service-mobile-auto-electrician.html", "destination": "/", "permanent": true },
+    { "source": "/service-general-electrical-repairs.html", "destination": "/services/car-repair/", "permanent": true },
+    { "source": "/service-battery-charging-systems.html", "destination": "/services/car-repair/", "permanent": true },
+    { "source": "/service-trailer-wiring.html", "destination": "/services/car-repair/", "permanent": true },
+    { "source": "/service-dash-cam-accessories.html", "destination": "/services/accessory-installation/", "permanent": true }
+  ]
+}
